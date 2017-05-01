@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GMap.NET;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,13 @@ namespace HelloWorld.Desktop
         public Shell()
         {
             InitializeComponent();
+
+            MainMap.MapProvider = GMap.NET.MapProviders.BingHybridMapProvider.Instance;
+            MainMap.Manager.Mode = AccessMode.ServerAndCache;
+            System.Drawing.Size size = new System.Drawing.Size(MainMap.Width, MainMap.Height);
+            MainMap.ClientSize = size;
+            MainMap.DragButton = System.Windows.Forms.MouseButtons.Left;
+
         }
     }
 }

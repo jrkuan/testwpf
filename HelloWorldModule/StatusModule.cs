@@ -5,11 +5,11 @@ using Prism.Regions;
 
 namespace HelloWorldModule
 {
-    public class HelloWorldModule : IModule
+    public class StatusModule : IModule
     {
         private readonly IRegionManager regionManager;
 
-        public HelloWorldModule(IRegionManager regionManager)
+        public StatusModule(IRegionManager regionManager)
         {
             this.regionManager = regionManager;
         }
@@ -19,7 +19,7 @@ namespace HelloWorldModule
         /// </summary>
         void IModule.Initialize()
         {
-            regionManager.RegisterViewWithRegion("MainRegion", typeof(Views.HelloWorldView));
+            regionManager.RegisterViewWithRegion("StatusRegion", typeof(Views.HelloWorldView));
 
         }
     }

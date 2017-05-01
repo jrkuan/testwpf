@@ -34,7 +34,7 @@ namespace HelloWorld.Desktop
         {
             base.ConfigureModuleCatalog();
             ModuleCatalog moduleCatalog = (ModuleCatalog)this.ModuleCatalog;
-            moduleCatalog.AddModule(typeof(HelloWorldModule.HelloWorldModule));
+            moduleCatalog.AddModule(typeof(StatusModule));
         }
 
     }

@@ -4,9 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HelloWorldModule.Views"
-             mc:Ignorable="d" >
+             xmlns:map="clr-namespace:GMap.NET.WindowsForms;assembly=GMap.NET.WindowsForms"
+             mc:Ignorable="d" 
+             >
     <Grid>
-        <TextBlock Text="Hello World" Foreground="Green" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Calibri" FontSize="24" FontWeight="Bold"></TextBlock>
+        
 
     </Grid>
 </UserControl>
