@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="MapModule.Views.MapView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MapModule.Views"
+             xmlns:map="clr-namespace:GMap.NET.WindowsPresentation;assembly=GMap.NET.WindowsPresentation"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+
+        <map:GMapControl x:Name="MainMap" MinZoom="2"
+                                         MaxZoom="25"
+                                         Zoom="13"                                      
+                                        MouseMove="MainMap_MouseMove"
+                                         MouseWheelZoomType="MousePositionWithoutCenter"
+                                         CanDragMap="True"                                                                     
+                                         Margin="0,0,0,0">
+            <map:GMapControl.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Go Here" Command="{Binding GoHereContextMenuCommand}"></MenuItem>
+                    <MenuItem Header="Go Here (Altitude)" Command="{Binding GoHereContextMenuCommand}"></MenuItem>
+                </ContextMenu>
+            </map:GMapControl.ContextMenu>
+            <map:GMapControl.InputBindings>
+                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding MapMouseDoubleLeftClickCommand}"/>
+                <MouseBinding Gesture="MiddleClick" Command="{Binding MapMouseMiddleClickCommand}"/>
+            </map:GMapControl.InputBindings>
+        </map:GMapControl>
+
+        <local:WaypointControl></local:WaypointControl>
+        
+    </Grid>
+</UserControl>

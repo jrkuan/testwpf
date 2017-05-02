@@ -10,9 +10,16 @@ namespace VideoModule
 {
     public class VideoModule : IModule
     {
+        private readonly IRegionManager regionManager;
+
+        public VideoModule(IRegionManager regionManager)
+        {
+            this.regionManager = regionManager;
+        }
+
         void IModule.Initialize()
         {
-            throw new NotImplementedException();
+            return;
         }
     }
 }

@@ -3,7 +3,7 @@ using Prism;
 using Prism.Modularity;
 using Prism.Regions;
 
-namespace HelloWorldModule
+namespace StatusModule
 {
     public class StatusModule : IModule
     {
@@ -19,7 +19,7 @@ namespace HelloWorldModule
         /// </summary>
         void IModule.Initialize()
         {
-            regionManager.RegisterViewWithRegion("StatusRegion", typeof(Views.HelloWorldView));
+            regionManager.RegisterViewWithRegion("StatusRegion", typeof(Views.StatusView));
 
         }
     }

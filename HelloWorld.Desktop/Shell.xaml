@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HelloWorld.Desktop"
         xmlns:prism="http://www.codeplex.com/prism"
-        xmlns:map="clr-namespace:GMap.NET.WindowsForms;assembly=GMap.NET.WindowsForms"
+        xmlns:map="clr-namespace:GMap.NET.WindowsPresentation;assembly=GMap.NET.WindowsPresentation"
         mc:Ignorable="d"
         Title="HopeTechnik Minecraft GCS" Height="768" Width="1366" MinHeight="768" MinWidth="1366">
     <Window.Background>
@@ -25,26 +25,18 @@
             <RowDefinition Height="9*"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Border Panel.ZIndex="0" Grid.Row="0" Grid.Column="1" CornerRadius="5" BorderBrush="#193441" Background="Transparent" BorderThickness="3,3,3,3" Margin="5" Padding="5">
-            <!--<ItemsControl Name="MainRegion" prism:RegionManager.RegionName="MainRegion" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5"></ItemsControl>-->
-            <Grid>
-            <Border CornerRadius="5" Panel.ZIndex="0" BorderBrush="Gray" Background="Black" BorderThickness="3,3,3,3">
-                <WindowsFormsHost Panel.ZIndex="0" Width="auto" Height="auto"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <map:GMapControl AutoSize="True" x:Name="MainMap" MinZoom="2"
-                                         MaxZoom="25"
-                                         Zoom="13"                                      
-                                         MouseWheelZoomType="MousePositionWithoutCenter"
-                                         CanDragMap="True"                                                                     
-                                         Margin="0,0,0,0" Dock="Fill" BackColor="Transparent" ForeColor="ActiveBorder" TabIndex="0" MarkersEnabled="True" EmptyTileColor="Black" PolygonsEnabled="True" RoutesEnabled="True">
-                    </map:GMapControl>
-                </WindowsFormsHost>
+        <Border Grid.Row="0" Grid.Column="1" CornerRadius="5" BorderBrush="#193441" BorderThickness="3,3,3,3" Margin="5" Padding="5">
+            
+            <Grid Width="auto" Height="auto">
+            <Border CornerRadius="5" BorderBrush="Gray" BorderThickness="3,3,3,3">
+                    <ContentControl Name="MainRegion" prism:RegionManager.RegionName="MainRegion" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5"></ContentControl>
             </Border>
-                <StackPanel Grid.Row="0" Grid.Column="1" Background="White" Opacity="0.9" Panel.ZIndex="10000" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="-25">
-                    <Label HorizontalAlignment="Center" FontSize="20" FontWeight="ExtraBold" VerticalAlignment="Bottom" Content="Latitude"></Label>
-                    <Label HorizontalAlignment="Center" FontSize="20" FontWeight="ExtraBold" VerticalAlignment="Bottom" Content="Longitude"></Label>
-                    
+
+                <StackPanel Grid.Row="0" Grid.Column="1" Background="White" Opacity="0.6" Panel.ZIndex="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,0">
+                    <Label HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" VerticalAlignment="Bottom" Content="Latitude"></Label>
+                    <Label HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" VerticalAlignment="Bottom" Content="Longitude"></Label>
                 </StackPanel>
-                
+
             </Grid>
         </Border>
 

@@ -1,5 +1,4 @@
-﻿using GMap.NET;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace StatusModule.Views
+namespace MapModule.Views
 {
     /// <summary>
-    /// Interaction logic for HelloWorldView.xaml
+    /// Interaction logic for WaypointControl.xaml
     /// </summary>
-    public partial class StatusView : UserControl
+    public partial class WaypointControl : UserControl
     {
-        public StatusView()
+        public WaypointControl()
         {
             InitializeComponent();
         }

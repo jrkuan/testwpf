@@ -1,18 +1,4 @@
-﻿using GMap.NET;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows;
 
 namespace HelloWorld.Desktop
 {
@@ -24,13 +10,6 @@ namespace HelloWorld.Desktop
         public Shell()
         {
             InitializeComponent();
-
-            MainMap.MapProvider = GMap.NET.MapProviders.BingHybridMapProvider.Instance;
-            MainMap.Manager.Mode = AccessMode.ServerAndCache;
-            System.Drawing.Size size = new System.Drawing.Size(MainMap.Width, MainMap.Height);
-            MainMap.ClientSize = size;
-            MainMap.DragButton = System.Windows.Forms.MouseButtons.Left;
-
         }
     }
 }

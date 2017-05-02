@@ -1,7 +1,6 @@
 ﻿using System.Windows;
 using Prism.Unity;
 using Prism.Modularity;
-using HelloWorldModule;
 
 namespace HelloWorld.Desktop
 {
@@ -34,7 +33,8 @@ namespace HelloWorld.Desktop
         {
             base.ConfigureModuleCatalog();
             ModuleCatalog moduleCatalog = (ModuleCatalog)this.ModuleCatalog;
-            moduleCatalog.AddModule(typeof(StatusModule));
+            moduleCatalog.AddModule(typeof(StatusModule.StatusModule));
+            moduleCatalog.AddModule(typeof(MapModule.MapModule));
         }
 
     }
