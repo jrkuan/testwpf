@@ -1,6 +1,8 @@
 ﻿using System.Windows;
 using Prism.Unity;
 using Prism.Modularity;
+using Prism.Mvvm;
+using MinecraftModule;
 
 namespace HelloWorld.Desktop
 {
@@ -35,6 +37,7 @@ namespace HelloWorld.Desktop
             ModuleCatalog moduleCatalog = (ModuleCatalog)this.ModuleCatalog;
             moduleCatalog.AddModule(typeof(StatusModule.StatusModule));
             moduleCatalog.AddModule(typeof(MapModule.MapModule));
+            moduleCatalog.AddModule(typeof(MinecraftModule.MinecraftModule));
         }
 
     }

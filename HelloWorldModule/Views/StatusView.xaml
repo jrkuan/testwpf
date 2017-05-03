@@ -20,11 +20,13 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Column="0">Pitch</TextBlock>
-        <TextBlock Grid.Column="1">Value</TextBlock>
+        <TextBlock Grid.Column="1" Text="{Binding PitchValue}"></TextBlock>
+        
         <TextBlock Grid.Column="2">Roll</TextBlock>
-        <TextBlock Grid.Column="3">Value</TextBlock>
+        <TextBlock Grid.Column="3" Text="{Binding RollValue}"></TextBlock>
+        
         <TextBlock Grid.Column="4">Yaw</TextBlock>
-        <TextBlock Grid.Column="5">Roll</TextBlock>
+        <TextBlock Grid.Column="5" Text="{Binding YawValue}"></TextBlock>
         
         <TextBlock></TextBlock>
 

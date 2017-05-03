@@ -150,6 +150,10 @@
       <Project>{81BA723C-EEB0-4C55-B386-250813E5CD0C}</Project>
       <Name>MapModule</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MinecraftModule\MinecraftModule.csproj">
+      <Project>{2BA248F4-9D47-456C-B7DE-37C6B44B4449}</Project>
+      <Name>MinecraftModule</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

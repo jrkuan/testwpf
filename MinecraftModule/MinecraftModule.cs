@@ -1,15 +1,18 @@
-﻿using System;
-using Prism;
-using Prism.Modularity;
+﻿using Prism.Modularity;
 using Prism.Regions;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace StatusModule
+namespace MinecraftModule
 {
-    public class StatusModule : IModule
+    public class MinecraftModule : IModule
     {
         private readonly IRegionManager regionManager;
 
-        public StatusModule(IRegionManager regionManager)
+        public MinecraftModule(IRegionManager regionManager)
         {
             this.regionManager = regionManager;
         }
@@ -19,8 +22,8 @@ namespace StatusModule
         /// </summary>
         void IModule.Initialize()
         {
-            regionManager.RegisterViewWithRegion("StatusRegion", typeof(Views.StatusView));
-            
+                
+
         }
     }
 }

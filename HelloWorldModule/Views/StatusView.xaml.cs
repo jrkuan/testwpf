@@ -1,4 +1,5 @@
 ﻿using GMap.NET;
+using StatusModule.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,11 @@ namespace StatusModule.Views
         public StatusView()
         {
             InitializeComponent();
+        }
+
+        public StatusView(StatusViewPresenter presenter) : this()
+        {
+
         }
     }
 }

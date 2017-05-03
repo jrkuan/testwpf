@@ -27,8 +27,13 @@
                 <MouseBinding Gesture="MiddleClick" Command="{Binding MapMouseMiddleClickCommand}"/>
             </map:GMapControl.InputBindings>
         </map:GMapControl>
-
-        <local:WaypointControl></local:WaypointControl>
         
+        <local:WaypointControl></local:WaypointControl>
+
+        <StackPanel Grid.Row="0" Grid.Column="0" Background="White" Opacity="0.75" Panel.ZIndex="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,-10">
+            <TextBlock Name="LatitudeLabel"  HorizontalAlignment="Center" FontSize="14" FontWeight="DemiBold" VerticalAlignment="Center" Text="Latitude" Padding="2"></TextBlock>
+            <TextBlock Name="LongitudeLabel" HorizontalAlignment="Center" FontSize="14" FontWeight="DemiBold" VerticalAlignment="Center" Text="Longitude" Padding="2"></TextBlock>
+        </StackPanel>
+
     </Grid>
 </UserControl>

@@ -16,7 +16,7 @@
         </LinearGradientBrush>
     </Window.Background>
     
-    <Grid Width="auto" Height="auto" Margin="5">
+    <Grid Width="auto" Height="auto" Margin="2">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
@@ -32,10 +32,7 @@
                     <ContentControl Name="MainRegion" prism:RegionManager.RegionName="MainRegion" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5"></ContentControl>
             </Border>
 
-                <StackPanel Grid.Row="0" Grid.Column="1" Background="White" Opacity="0.6" Panel.ZIndex="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,0">
-                    <Label HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" VerticalAlignment="Bottom" Content="Latitude"></Label>
-                    <Label HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" VerticalAlignment="Bottom" Content="Longitude"></Label>
-                </StackPanel>
+                
 
             </Grid>
         </Border>
