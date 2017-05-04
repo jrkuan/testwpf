@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System;
 using System.Collections.ObjectModel;
+using GMap.NET.WindowsPresentation;
 
 namespace MapModule.Views
 {
@@ -36,16 +37,38 @@ namespace MapModule.Views
         {
             CurrentMouseLatLng = MainMap.FromLocalToLatLng((int)e.GetPosition(MainMap).X, (int)e.GetPosition(MainMap).Y);
 
-            LatitudeLabel.Text = CurrentMouseLatLng.Lat.ToString("N7");
-            LongitudeLabel.Text = CurrentMouseLatLng.Lng.ToString("N7");
+            if (DataContext != null && DataContext is IMapViewModel)
+            {
+                ((IMapViewModel)DataContext).UpdateCurrentMouseLatLng(CurrentMouseLatLng);
+            }
         }
-
-        
 
         void IMapView.SetModel(IMapViewModel model)
         {
             DataContext = model;
         }
 
+        void IMapView.UpdateMapMarkers(ObservableCollection<CustomMapMarker> markers)
+        {
+            // TODO: Assert that MainMap.Markers.Count == markers.Count
+
+            if (MainMap.Markers.Count != markers.Count)
+            {
+                MainMap.Markers.Clear();
+
+                for (int i = 0; i < markers.Count; i++)
+                {
+                    MainMap.Markers.Add(markers[i]);
+                }
+                return;
+            }
+
+            // TODO: Check if is it more efficent to create new markers or change the properties of each marker.
+
+            for (int i = 0; i < MainMap.Markers.Count; i++)
+            {
+                MainMap.Markers[i].Position = new PointLatLng(markers[i].Position.Lat, markers[i].Position.Lng);
+            }
+        }
     }
 }

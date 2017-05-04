@@ -30,9 +30,9 @@
         
         <local:WaypointControl></local:WaypointControl>
 
-        <StackPanel Grid.Row="0" Grid.Column="0" Background="White" Opacity="0.75" Panel.ZIndex="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,-10">
-            <TextBlock Name="LatitudeLabel"  HorizontalAlignment="Center" FontSize="14" FontWeight="DemiBold" VerticalAlignment="Center" Text="Latitude" Padding="2"></TextBlock>
-            <TextBlock Name="LongitudeLabel" HorizontalAlignment="Center" FontSize="14" FontWeight="DemiBold" VerticalAlignment="Center" Text="Longitude" Padding="2"></TextBlock>
+        <StackPanel Grid.Row="0" Grid.Column="0" Background="Transparent" Opacity="0.75" Panel.ZIndex="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,-5">
+            <TextBlock Name="LatitudeLabel" Background="Black" Foreground="White" Opacity="1" Text="{Binding CurrentMouseLatitude, StringFormat=N7}"  HorizontalAlignment="Center" FontSize="14" FontWeight="DemiBold" TextWrapping="Wrap"  VerticalAlignment="Center" Padding="5" Width="100"></TextBlock>
+            <TextBlock Name="LongitudeLabel" Background="Black" Foreground="White" Opacity="1" Text="{Binding CurrentMouseLongitude, StringFormat=N7}" HorizontalAlignment="Center" FontSize="14" FontWeight="DemiBold" TextWrapping="Wrap" VerticalAlignment="Center" Padding="5" Width="100"></TextBlock>
         </StackPanel>
 
     </Grid>

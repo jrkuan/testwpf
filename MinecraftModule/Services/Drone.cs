@@ -1,6 +1,5 @@
 ﻿using MavLink;
 using MinecraftModule.Models;
-using MultiDroneGCS1.Models;
 using Prism.Mvvm;
 using System;
 using System.Collections.ObjectModel;

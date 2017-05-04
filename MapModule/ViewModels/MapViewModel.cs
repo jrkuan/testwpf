@@ -1,9 +1,11 @@
 ﻿using MapModule.Interfaces;
 using System;
+using GMap.NET;
 using MapModule.Views;
 using System.Collections.ObjectModel;
 using Prism.Mvvm;
 using Prism.Commands;
+using System.Collections.Specialized;
 
 namespace MapModule.ViewModels
 {
@@ -19,9 +21,19 @@ namespace MapModule.ViewModels
             _model = model;
 
             _mapMarkers = new ObservableCollection<CustomMapMarker>();
-            _mapMarkers = _model.GetMarkers();
+            //_mapMarkers = _model.GetMarkers();
 
             _view.SetModel(this);
+
+            MapMarkers.CollectionChanged += MapMarkers_CollectionChanged;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void MapMarkers_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            _view.UpdateMapMarkers(MapMarkers);
         }
 
         public ObservableCollection<CustomMapMarker> MapMarkers
@@ -36,14 +48,23 @@ namespace MapModule.ViewModels
             }
         }
 
-        private DelegateCommand _mapMouseDoubleLefClickCommand;
+        private DelegateCommand _mapMouseDoubleLeftClickCommand;
         public DelegateCommand MapMouseDoubleLeftClickCommand
         {
             get
             {
-                return _mapMouseDoubleLefClickCommand = new DelegateCommand(MapMouseDoubleLeftClick);
+                return _mapMouseDoubleLeftClickCommand = new DelegateCommand(MapMouseDoubleLeftClick);
             }
         }
+
+        //private DelegateCommand _mapMouseMoveCommand;
+        //public DelegateCommand MapMouseMoveCommand
+        //{
+        //    get
+        //    {
+        //        //return _mapMouseMoveCommand = new DelegateCommand(MapMouseMove);
+        //    }
+        //}
 
         public IMapView View
         {
@@ -55,7 +76,40 @@ namespace MapModule.ViewModels
 
         private void MapMouseDoubleLeftClick()
         {
-            
+            MapMarkers.Add(new CustomMapMarker(CustomMapMarker.TagType.Waypoint, new PointLatLng(CurrentMouseLatitude, CurrentMouseLongitude), "waypoint", 0) { Offset = new System.Windows.Point(-50,-50)});
         }
+
+        void IMapViewModel.UpdateCurrentMouseLatLng(PointLatLng currentMouseLatLng)
+        {
+            CurrentMouseLatitude = currentMouseLatLng.Lat;
+            CurrentMouseLongitude = currentMouseLatLng.Lng;
+        }
+
+        private double _currentMouseLatitude;
+        public double CurrentMouseLatitude
+        {
+            get
+            {
+                return _currentMouseLatitude;
+            }
+            set
+            {
+                SetProperty(ref _currentMouseLatitude, value);
+            }
+        }
+
+        private double _currentMouseLongitude;
+        public double CurrentMouseLongitude
+        {
+            get
+            {
+                return _currentMouseLongitude;
+            }
+            set
+            {
+                SetProperty(ref _currentMouseLongitude, value);
+            }
+        }
+
     }
 }

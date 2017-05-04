@@ -1,16 +1,14 @@
-﻿using MapModule.Views;
-using System;
-using System.Collections.Generic;
+﻿using GMap.NET;
+using MapModule.Views;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MapModule.Interfaces
 {
     public interface IMapViewModel
     {
         ObservableCollection<CustomMapMarker> MapMarkers { get; }
+
+        void UpdateCurrentMouseLatLng(PointLatLng currentMouseLatLng);
 
         IMapView View { get; }
                     

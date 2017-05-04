@@ -19,25 +19,28 @@
     <Grid Width="auto" Height="auto" Margin="2">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
+
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="9*"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Border Grid.Row="0" Grid.Column="1" CornerRadius="5" BorderBrush="#193441" BorderThickness="3,3,3,3" Margin="5" Padding="5">
-            
+
+        <ItemsControl Grid.Column="0"></ItemsControl>
+
+        <GridSplitter Grid.Column="1" VerticalAlignment="Stretch"></GridSplitter>
+        
+        <Border Grid.Row="0" Grid.Column="2" CornerRadius="5" BorderBrush="#193441" BorderThickness="3,3,3,3" Margin="5" Padding="5">
             <Grid Width="auto" Height="auto">
-            <Border CornerRadius="5" BorderBrush="Gray" BorderThickness="3,3,3,3">
+                <Border CornerRadius="5" BorderBrush="Gray" BorderThickness="3,3,3,3">
                     <ContentControl Name="MainRegion" prism:RegionManager.RegionName="MainRegion" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5"></ContentControl>
-            </Border>
-
-                
-
+                </Border>
             </Grid>
         </Border>
 
-        <Border Grid.Row="1" Grid.Column="1" CornerRadius="5" BorderBrush="#193441" Background="Transparent" BorderThickness="3,3,3,3" Margin="5" Padding="5">
+        <Border Grid.Row="1" Grid.Column="2" CornerRadius="5" BorderBrush="#193441" Background="Transparent" BorderThickness="3,3,3,3" Margin="5" Padding="5">
             <ItemsControl Name="StatusRegion" prism:RegionManager.RegionName="StatusRegion" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0"></ItemsControl>
         </Border>
         

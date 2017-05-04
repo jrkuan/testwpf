@@ -1,7 +1,9 @@
-﻿using Prism.Modularity;
+﻿using MinecraftModule.Services;
+using Prism.Modularity;
 using Prism.Regions;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +17,8 @@ namespace MinecraftModule
         public MinecraftModule(IRegionManager regionManager)
         {
             this.regionManager = regionManager;
+
+            MyDebug.WriteLine("MinecraftModule intialized");
         }
 
         /// <summary>
@@ -22,8 +26,11 @@ namespace MinecraftModule
         /// </summary>
         void IModule.Initialize()
         {
-                
+            ObservableCollection<Drone> Drones = new ObservableCollection<Drone>();
+            Drones.Add(new MavlinkDrone() { Param1 = "COM10", Param2 = 57600, ConnType = DroneModel.ConnectionType.SERIAL});
+            Drones[0].Connect();
 
+            Drones[0].Arm();
         }
     }
 }

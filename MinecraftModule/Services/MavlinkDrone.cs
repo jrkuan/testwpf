@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using static MinecraftModule.Services.DroneModel;
 
-namespace MultiDroneGCS1.Models
+namespace MinecraftModule.Services
 {
     public class MavlinkDrone : Drone
     {
