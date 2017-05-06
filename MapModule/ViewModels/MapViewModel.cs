@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using Prism.Mvvm;
 using Prism.Commands;
 using System.Collections.Specialized;
+using System.Windows.Controls.Primitives;
 
 namespace MapModule.ViewModels
 {
@@ -53,18 +54,18 @@ namespace MapModule.ViewModels
         {
             get
             {
-                return _mapMouseDoubleLeftClickCommand = new DelegateCommand(MapMouseDoubleLeftClick);
+                return _mapMouseDoubleLeftClickCommand = new DelegateCommand(MapMouseDoubleLeftClick, MapMouseDoubleLeftClickCanExecute);
             }
         }
 
-        //private DelegateCommand _mapMouseMoveCommand;
-        //public DelegateCommand MapMouseMoveCommand
-        //{
-        //    get
-        //    {
-        //        //return _mapMouseMoveCommand = new DelegateCommand(MapMouseMove);
-        //    }
-        //}
+        private DelegateCommand _clearWaypointsCommand;
+        public DelegateCommand ClearWaypointsCommand
+        {
+            get
+            {
+                return _clearWaypointsCommand = new DelegateCommand(ClearWaypoints);
+            }
+        }
 
         public IMapView View
         {
@@ -72,17 +73,38 @@ namespace MapModule.ViewModels
             {
                 return _view;
             }
-        }
-
-        private void MapMouseDoubleLeftClick()
-        {
-            MapMarkers.Add(new CustomMapMarker(CustomMapMarker.TagType.Waypoint, new PointLatLng(CurrentMouseLatitude, CurrentMouseLongitude), "waypoint", 0) { Offset = new System.Windows.Point(-50,-50)});
-        }
+        }        
 
         void IMapViewModel.UpdateCurrentMouseLatLng(PointLatLng currentMouseLatLng)
         {
             CurrentMouseLatitude = currentMouseLatLng.Lat;
             CurrentMouseLongitude = currentMouseLatLng.Lng;
+        }
+
+        private void MapMouseDoubleLeftClick()
+        {
+            MapMarkers.Add(new CustomMapMarker(CustomMapMarker.TagType.Waypoint, new PointLatLng(CurrentMouseLatitude, CurrentMouseLongitude), "waypoint", 0) { Offset = new System.Windows.Point(-50, -50) });
+        }
+
+        private bool MapMouseDoubleLeftClickCanExecute()
+        {
+            return ExpanderIsExpanded;
+        }
+
+        private void ClearWaypoints()
+        {
+            MapMarkers.CollectionChanged -= MapMarkers_CollectionChanged;
+            foreach (CustomMapMarker cmm in MapMarkers)
+            {
+               if ((CustomMapMarker.TagType)cmm.Tag == CustomMapMarker.TagType.Waypoint)
+                {
+
+                }
+            }
+            Popup myPopup = new Popup();
+            myPopup.IsOpen = true;
+            
+
         }
 
         private double _currentMouseLatitude;
@@ -108,6 +130,19 @@ namespace MapModule.ViewModels
             set
             {
                 SetProperty(ref _currentMouseLongitude, value);
+            }
+        }
+
+        private bool _expanderIsExpanded;
+        public bool ExpanderIsExpanded
+        {
+            get
+            {
+                return _expanderIsExpanded;
+            }
+            set
+            {
+                SetProperty(ref _expanderIsExpanded, value);
             }
         }
 

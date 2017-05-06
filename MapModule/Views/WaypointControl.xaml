@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MapModule.Views"
+             xmlns:dvm="clr-namespace:MapModule.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
@@ -17,7 +18,7 @@
                 </TransformGroup>
             </DockPanel.RenderTransform>
 
-            <Expander IsExpanded="False" VerticalAlignment="Bottom" Grid.Row="0" x:Name="waypointExpander" Focusable="False" Foreground="White" FontSize="14" FontWeight="DemiBold" ExpandDirection="Up">
+            <Expander IsExpanded="{Binding ExpanderIsExpanded}" VerticalAlignment="Bottom" Grid.Row="0" x:Name="waypointExpander" Focusable="False" Foreground="White" FontSize="14" FontWeight="DemiBold" ExpandDirection="Up">
                 <Expander.Header>
                     <TextBlock Text="Waypoint Mission" FontSize="16" FontWeight="Bold" Padding="3"></TextBlock>
                 </Expander.Header>
