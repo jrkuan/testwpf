@@ -6,7 +6,7 @@
              xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing"
              xmlns:local="clr-namespace:MapModule.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300" Width="1000" Height="1000">
+             d:DesignHeight="300" d:DesignWidth="300" Width="100" Height="100">
     <Grid RenderTransformOrigin="0.5,0.5" MouseDown="Grid_MouseDown">
         <Grid.RenderTransform>
             <TransformGroup>
@@ -19,11 +19,6 @@
         <Grid.Effect>
             <DropShadowEffect ShadowDepth="3"/>
         </Grid.Effect>
-        <Ellipse x:Name="LinkIndicatorEllipse" HorizontalAlignment="Center" Margin="32,32,34,34" Width="34" ToolTip="Camera View" Fill="#FFFD1F1F" Height="34" VerticalAlignment="Center" Stroke="Black" StrokeThickness="5" Panel.ZIndex="1" Opacity="0.15">
-            <Ellipse.Effect>
-                <DropShadowEffect ShadowDepth="1"/>
-            </Ellipse.Effect>
-        </Ellipse>
         <ed:Arc x:Name="FOVArc" ArcThickness="50" ArcThicknessUnit="Pixel" EndAngle="20" Margin="0" Stretch="None" RenderTransformOrigin="0.5,0.5" StartAngle="-20" Visibility="Collapsed">
             <ed:Arc.Fill>
                 <RadialGradientBrush GradientOrigin="0.5,1">
@@ -51,9 +46,8 @@
                     <GradientStop Offset="1" Color="#FFB400FF"/>
                 </RadialGradientBrush>
             </Ellipse.Fill>
-
         </Ellipse>
-        <Label x:Name="UAVNameLabel" Content="?" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="9.333" FontWeight="Bold" Padding="16,10" Margin="32,34,31,34" Width="37"/>
+        <Label x:Name="UAVNameLabel" Content="?" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="9.333" FontWeight="Bold" Padding="16,10"/>
         <ProgressBar x:Name="BatteryProgressBar" Height="6" VerticalAlignment="Center" Margin="0,24,0,0" HorizontalAlignment="Center" SmallChange="1" Foreground="Lime" Background="#33000000" BorderBrush="Black" BorderThickness="0.8" Panel.ZIndex="1" Width="22" Value="100">
             <ProgressBar.Effect>
                 <DropShadowEffect ShadowDepth="1"/>
@@ -69,17 +63,20 @@
                 <DropShadowEffect ShadowDepth="1" BlurRadius="5"/>
             </Label.Effect>
         </Label>
-
         <ed:Arc x:Name="FlightBearingArc" ArcThickness="32" ArcThicknessUnit="Pixel" EndAngle="2" Margin="0" Stretch="None" Width="80" Height="80" RenderTransformOrigin="0.5,0.5" Fill="White" StartAngle="-2">
             <ed:Arc.Effect>
                 <DropShadowEffect ShadowDepth="1"/>
             </ed:Arc.Effect>
         </ed:Arc>
-        <ed:Arc x:Name="SelectorRing" ArcThicknessUnit="Pixel" EndAngle="360" Margin="0" Stretch="None" StartAngle="0" Width="16" Height="16" Panel.ZIndex="2" Fill="Yellow" StrokeThickness="0" ArcThickness="2" Visibility="Collapsed">
+        <Ellipse x:Name="LinkIndicatorEllipse" HorizontalAlignment="Center" Margin="22,0,0,6" Width="5" ToolTip="0" Fill="Red" Height="5" VerticalAlignment="Center" Stroke="Black" StrokeThickness="0.5" Panel.ZIndex="1">
+            <Ellipse.Effect>
+                <DropShadowEffect ShadowDepth="1"/>
+            </Ellipse.Effect>
+        </Ellipse>
+        <ed:Arc x:Name="SelectorRing" ArcThicknessUnit="Pixel" EndAngle="360" Margin="0" Stretch="None" StartAngle="0" Width="50" Height="50" Panel.ZIndex="2" Fill="Yellow" StrokeThickness="0" ArcThickness="2" Visibility="Collapsed">
             <ed:Arc.Effect>
                 <DropShadowEffect ShadowDepth="2"/>
             </ed:Arc.Effect>
         </ed:Arc>
-
     </Grid>
 </UserControl>

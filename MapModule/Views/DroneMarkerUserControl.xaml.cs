@@ -1,22 +1,27 @@
-﻿using MinecraftModule.Services;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 namespace MapModule.Views
 {
     public partial class DroneMarkerUserControl : UserControl
     {
+        #region Constructor
 
         public DroneMarkerUserControl()
         {
             InitializeComponent();
         }
 
-        public void Grid_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        #endregion
+
+        #region Methods
+
+        private void Grid_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            
-            
-            
+
+            //Toggle drone ring visibility upon pressing
+            SelectorRing.Visibility = SelectorRing.Visibility == System.Windows.Visibility.Hidden ? System.Windows.Visibility.Visible : System.Windows.Visibility.Hidden;
         }
+
+        #endregion
     }
 }

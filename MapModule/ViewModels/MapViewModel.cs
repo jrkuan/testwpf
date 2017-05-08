@@ -7,6 +7,8 @@ using Prism.Mvvm;
 using Prism.Commands;
 using System.Collections.Specialized;
 using System.Windows.Controls.Primitives;
+using System.Threading;
+using MapModule.Services;
 
 namespace MapModule.ViewModels
 {
@@ -15,6 +17,7 @@ namespace MapModule.ViewModels
         private readonly IMapModel _model;
         private readonly IMapView _view;
         private ObservableCollection<CustomMapMarker> _mapMarkers;
+        public ObservableCollection<WaypointGridItem> waypointGridItems { get; }
         
         public MapViewModel(IMapView view, IMapModel model)
         {
@@ -24,9 +27,15 @@ namespace MapModule.ViewModels
             _mapMarkers = new ObservableCollection<CustomMapMarker>();
             //_mapMarkers = _model.GetMarkers();
 
+            waypointGridItems = new ObservableCollection<WaypointGridItem>();
+
             _view.SetModel(this);
 
             MapMarkers.CollectionChanged += MapMarkers_CollectionChanged;
+            //Thread.Sleep(1000);
+
+            MapMarkers.Add(new CustomMapMarker(CustomMapMarker.TagType.Drone, new PointLatLng(1.3113, 103.72947), "drone", 0) { });
+            waypointGridItems.Add(new WaypointGridItem() { Index = 32, Lat = 1.3123});
         }
 
         /// <summary>
@@ -93,18 +102,21 @@ namespace MapModule.ViewModels
 
         private void ClearWaypoints()
         {
-            MapMarkers.CollectionChanged -= MapMarkers_CollectionChanged;
+            
+            ObservableCollection<CustomMapMarker> newCollection = new ObservableCollection<CustomMapMarker>();
             foreach (CustomMapMarker cmm in MapMarkers)
             {
-               if ((CustomMapMarker.TagType)cmm.Tag == CustomMapMarker.TagType.Waypoint)
+               if ((CustomMapMarker.TagType)cmm.Tag != CustomMapMarker.TagType.Waypoint)
                 {
-
+                    newCollection.Add(cmm);
                 }
             }
-            Popup myPopup = new Popup();
-            myPopup.IsOpen = true;
+            MapMarkers.Clear();
             
-
+            foreach (CustomMapMarker cmm in newCollection)
+            {
+                MapMarkers.Add(cmm);
+            }
         }
 
         private double _currentMouseLatitude;

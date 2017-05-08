@@ -28,7 +28,7 @@ namespace MinecraftModule
         {
             ObservableCollection<Drone> Drones = new ObservableCollection<Drone>();
             Drones.Add(new MavlinkDrone() { Param1 = "COM10", Param2 = 57600, ConnType = DroneModel.ConnectionType.SERIAL});
-            Drones[0].Connect();
+            //Drones[0].Connect();
 
             Drones[0].Arm();
         }

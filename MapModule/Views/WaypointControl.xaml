@@ -37,7 +37,7 @@
                         <Button Content="Stop Waypoints" Padding="5,0" Command="{Binding StopWaypointMissionCommand}" Height="25" Margin="2"></Button>
                         <Button Content="Go to Waypoint" Padding="5,0" Command="{Binding SetCurrentWaypointCommand}" Height="25" Margin="2"></Button>
                     </StackPanel>
-                    <DataGrid x:Name="wpDataGrid" ItemsSource="{Binding WaypointsGridList}" CanUserReorderColumns="False" CanUserResizeColumns="False" IsManipulationEnabled="True" CanUserAddRows="False" CanUserDeleteRows="True" Height="auto" HorizontalAlignment="Stretch" AutoGenerateColumns="False" MinWidth="300" VerticalAlignment="Top">
+                    <DataGrid x:Name="wpDataGrid" ItemsSource="{Binding waypointGridItems}" CanUserReorderColumns="False" CanUserResizeColumns="False" IsManipulationEnabled="True" CanUserAddRows="False" CanUserDeleteRows="True" Height="auto" HorizontalAlignment="Stretch" AutoGenerateColumns="False" MinWidth="300" VerticalAlignment="Top" IsSynchronizedWithCurrentItem="True">
                         <DataGrid.Background>
                             <SolidColorBrush Color="black" Opacity="0.5"/>
                         </DataGrid.Background>

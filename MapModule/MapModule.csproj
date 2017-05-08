@@ -92,6 +92,7 @@
     <Compile Include="MapModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\MapModel.cs" />
+    <Compile Include="Services\WaypointGridItem.cs" />
     <Compile Include="ViewModels\MapViewModel.cs" />
     <Compile Include="Views\DroneMarkerUserControl.xaml.cs">
       <DependentUpon>DroneMarkerUserControl.xaml</DependentUpon>
