@@ -87,9 +87,13 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IStatusModel.cs" />
+    <Compile Include="Interfaces\IStatusView.cs" />
+    <Compile Include="Interfaces\IStatusViewModel.cs" />
+    <Compile Include="Services\StatusModel.cs" />
     <Compile Include="StatusModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\StatusViewPresenter.cs" />
+    <Compile Include="ViewModels\StatusViewModel.cs" />
     <Compile Include="Views\StatusView.xaml.cs">
       <DependentUpon>StatusView.xaml</DependentUpon>
     </Compile>
@@ -97,9 +101,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Page Include="Views\StatusView.xaml">
       <SubType>Designer</SubType>
@@ -110,6 +112,10 @@
     <ProjectReference Include="..\EventAggregation.Infrastructure\EventAggregation.Infrastructure.csproj">
       <Project>{7CD3AB86-EC26-4FCB-A797-3358BD444546}</Project>
       <Name>EventAggregation.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MinecraftModule\MinecraftModule.csproj">
+      <Project>{2BA248F4-9D47-456C-B7DE-37C6B44B4449}</Project>
+      <Name>MinecraftModule</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

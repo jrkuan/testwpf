@@ -44,6 +44,8 @@ namespace MapModule.Views
                     break;
                 case TagType.Waypoint:
                     Shape = new WaypointUserControl();
+
+                    ((WaypointUserControl)Shape).IndexLabel.Content = droneID.ToString();
                     break;
             }                    
         }

@@ -1,17 +1,24 @@
 ﻿using System;
 using Prism;
+using StatusModule.Services;
+using StatusModule.Views;
+using StatusModule.ViewModels;
+using StatusModule.Interfaces;
 using Prism.Modularity;
 using Prism.Regions;
+using Microsoft.Practices.Unity;
 
 namespace StatusModule
 {
-    public class StatusModule : IModule
+    public class StatusModel : IModule
     {
         private readonly IRegionManager regionManager;
+        private readonly IUnityContainer container;
 
-        public StatusModule(IRegionManager regionManager)
+        public StatusModel(IUnityContainer container, IRegionManager regionManager)
         {
             this.regionManager = regionManager;
+            this.container = container;
         }
 
         /// <summary>
@@ -19,8 +26,16 @@ namespace StatusModule
         /// </summary>
         void IModule.Initialize()
         {
-            regionManager.RegisterViewWithRegion("StatusRegion", typeof(Views.StatusView));
-            
+
+            container.RegisterType<IStatusModel, Services.StatusModel>();
+            container.RegisterType<IStatusViewModel, ViewModels.StatusViewModel>();
+            container.RegisterType<IStatusView, StatusView>();
+
+            IStatusViewModel view = container.Resolve<IStatusViewModel>();
+
+            //regionManager.RegisterViewWithRegion("StatusRegion", typeof(Views.StatusView));
+            regionManager.Regions["StatusRegion"].Add(view.View);
+
         }
     }
 }

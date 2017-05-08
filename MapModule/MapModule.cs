@@ -3,7 +3,6 @@ using MapModule.Services;
 using MapModule.ViewModels;
 using MapModule.Views;
 using Microsoft.Practices.Unity;
-using Prism.Events;
 using Prism.Modularity;
 using Prism.Regions;
 

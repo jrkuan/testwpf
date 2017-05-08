@@ -8,13 +8,13 @@ namespace EventAggregation.Infrastructure
 {
     public class VehicleStatus
     {
-        float latitude;
-        float longitude;
-        float altitude;
+        public float latitude;
+        public float longitude;
+        public float altitude;
 
-        float pitch;
-        float roll;
-        float yaw;
+        public float pitch;
+        public float roll;
+        public float yaw;
 
     }
 }

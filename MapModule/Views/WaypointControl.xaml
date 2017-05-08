@@ -43,8 +43,8 @@
                         </DataGrid.Background>
                         <DataGrid.Columns>
                             <DataGridTextColumn x:Name="wpDataGrid_WpNumber" Header="No." CanUserSort="False" Binding="{Binding Path=Index, Mode=TwoWay}" IsReadOnly="True" Width="30"></DataGridTextColumn>
-                            <DataGridTextColumn x:Name="wpDataGrid_WpLat" Header="Lat." CanUserSort="False" Binding="{Binding Path=Lat, Mode=TwoWay}" IsReadOnly="False" Width="80"></DataGridTextColumn>
-                            <DataGridTextColumn x:Name="wpDataGrid_WpLng" Header="Lng." CanUserSort="False" Binding="{Binding Path=Lng, Mode=TwoWay}" IsReadOnly="False" Width="80" Foreground="#FFC10B0B"></DataGridTextColumn>
+                            <DataGridTextColumn x:Name="wpDataGrid_WpLat" Header="Lat." CanUserSort="False" Binding="{Binding Path=Lat, Mode=TwoWay}" IsReadOnly="False" Width="150" Foreground="#FFC10B0B"></DataGridTextColumn>
+                            <DataGridTextColumn x:Name="wpDataGrid_WpLng" Header="Lng." CanUserSort="False" Binding="{Binding Path=Lng, Mode=TwoWay}" IsReadOnly="False" Width="150" Foreground="#FFC10B0B"></DataGridTextColumn>
                             <DataGridTextColumn x:Name="wpDataGrid_WpAlt" Header="Alt." CanUserSort="False" Binding="{Binding Path=Alt, Mode=TwoWay}" IsReadOnly="False" MinWidth="30"></DataGridTextColumn>
                             <DataGridTextColumn x:Name="wpDataGrid_WpDelay" Header="Delay" CanUserSort="False" Binding="{Binding Path=Delay, Mode=TwoWay}" IsReadOnly="False" MinWidth="30"></DataGridTextColumn>
                         </DataGrid.Columns>

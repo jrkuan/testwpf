@@ -590,9 +590,6 @@ namespace MinecraftModule.Services
                 }
             }
 
-            status.waypointCount = 0;
-            status.waypoints.Clear();
-
             return true;
         }
 

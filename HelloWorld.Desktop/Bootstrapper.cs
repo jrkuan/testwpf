@@ -3,11 +3,15 @@ using Prism.Unity;
 using Prism.Modularity;
 using Prism.Mvvm;
 using MinecraftModule;
+using Prism.Events;
+using Microsoft.Practices.Unity;
 
 namespace HelloWorld.Desktop
 {
     class Bootstrapper : UnityBootstrapper
     {
+        public readonly IEventAggregator _eventAggregator = new EventAggregator();
+        
         /// <summary>
         /// Create an instance of the shell window and return it
         /// </summary>
@@ -24,6 +28,8 @@ namespace HelloWorld.Desktop
         {
             base.InitializeShell();
 
+            Container.RegisterInstance(_eventAggregator);
+
             Application.Current.MainWindow = (Window)this.Shell;
             Application.Current.MainWindow.Show();
         }
@@ -35,7 +41,7 @@ namespace HelloWorld.Desktop
         {
             base.ConfigureModuleCatalog();
             ModuleCatalog moduleCatalog = (ModuleCatalog)this.ModuleCatalog;
-            moduleCatalog.AddModule(typeof(StatusModule.StatusModule));
+            moduleCatalog.AddModule(typeof(StatusModule.StatusModel));
             moduleCatalog.AddModule(typeof(MapModule.MapModule));
             moduleCatalog.AddModule(typeof(MinecraftModule.MinecraftModule));
         }

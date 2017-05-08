@@ -250,29 +250,7 @@ namespace MavLink
                     //_droneParams.load = msg1.load;
 
                     status.batteryVoltage = msg1.voltage_battery / 1000.0f;
-                    //_droneParams.voltageBattery = msg1.voltage_battery;
-                    //_droneParams.currentBattery = msg1.current_battery;
-                    //_droneParams.batteryRemaining = msg1.battery_remaining;
-                    //_droneParams.dropRateComm = msg1.drop_rate_comm;
-                    //_droneParams.errorsComm = msg1.errors_comm;
-                    //_droneParams.errorsCount1 = msg1.errors_count1;
-                    //_droneParams.errorsCount2 = msg1.errors_count2;
-                    //_droneParams.errorsCount3 = msg1.errors_count3;
-                    //_droneParams.errorsCount4 = msg1.errors_count4;
 
-                    //MyDebug.WriteLine(Convert.ToString(Status.onboardControlSensorsPresent) + " "
-                    //        + Convert.ToString(Status.onboardControlSensorsEnabled) + " "
-                    //        + Convert.ToString(Status.onboardControlSensorsHealth) + " "
-                    //        + Convert.ToString(Status.load) + " "
-                    //        + Convert.ToString(Status.voltageBattery) + " "
-                    //        + Convert.ToString(Status.currentBattery) + " "
-                    //        + Convert.ToString(Status.batteryRemaining) + " "
-                    //        + Convert.ToString(Status.dropRateComm) + " "
-                    //        + Convert.ToString(Status.errorsComm) + " "
-                    //        + Convert.ToString(Status.errorsCount1) + " "
-                    //        + Convert.ToString(Status.errorsCount2) + " "
-                    //        + Convert.ToString(Status.errorsCount3) + " "
-                    //        + Convert.ToString(Status.errorsCount4));
                     break;
 
                 case (byte)MAVLINK_MSG_ID.SYSTEM_TIME://2
@@ -367,65 +345,20 @@ namespace MavLink
                         status.longitude = status.longitudeRaw;
                     }
 
-                    ////_droneParams.Alt = (float)msg4.alt/1000f;
-                    //_droneParams.eph = msg4.eph;
-                    //_droneParams.epv = msg4.epv;
-                    //_droneParams.vel = msg4.vel;
-                    //_droneParams.cog = msg4.cog;
-                    //_droneParams.satellitesVisible = msg4.satellites_visible;
                     status.satelliteCount = msg4.satellites_visible;
-
-                    //MyDebug.WriteLine("GPS_RAW_INT => " + Convert.ToString(_droneParams.timeUsecGPSRaw) + " "
-                    //                                  + Convert.ToString(_droneParams.fixType) + " "
-                    //                                  + Convert.ToString(_droneParams.lat) + " "
-                    //                                  + Convert.ToString(_droneParams.lon) + " "
-                    //                                  + Convert.ToString(_droneParams.alt) + " "
-                    //                                  + Convert.ToString(_droneParams.eph) + " "
-                    //                                  + Convert.ToString(_droneParams.epv) + " "
-                    //                                  + Convert.ToString(_droneParams.vel) + " "
-                    //                                  + Convert.ToString(_droneParams.cog) + " "
-                    //                                  + Convert.ToString(_droneParams.satellitesVisible));
 
                     break;
 
                 case (byte)MAVLINK_MSG_ID.RAW_IMU: //27                    
 
-
-
                     var msg5 = (Msg_raw_imu)e.Message;
-                    //_droneParams.timeUsecIMURaw = msg5.time_usec;
-                    //_droneParams.xaccIMURaw = msg5.xacc;
-                    //_droneParams.yaccIMURaw = msg5.yacc;
-                    //_droneParams.zaccIMURaw = msg5.zacc;
-                    ////_droneParams.radPRY = new double[] { msg5.ygyro, msg5.xgyro, msg5.zgyro };
-                    //_droneParams.xmagIMURaw = msg5.xmag;
-                    //_droneParams.ymagIMURaw = msg5.ymag;
-                    //_droneParams.zmagIMURaw = msg5.zmag;
 
-                    //MyDebug.WriteLine(Convert.ToString(Status.timeUsecIMURaw) + " "
-                    //                + Convert.ToString(Status.xaccIMURaw) + " "
-                    //                + Convert.ToString(Status.yaccIMURaw) + " "
-                    //                + Convert.ToString(Status.zaccIMURaw) + " "
-                    //                + Convert.ToString(Status.xgyroIMURaw) + " "
-                    //                + Convert.ToString(Status.ygyroIMURaw) + " "
-                    //                + Convert.ToString(Status.zgyroIMURaw) + " "
-                    //                + Convert.ToString(Status.xmagIMURaw) + " "
-                    //                + Convert.ToString(Status.ymagIMURaw) + " "
-                    //                + Convert.ToString(Status.zmagIMURaw));
                     break;
 
                 case (byte)MAVLINK_MSG_ID.SCALED_PRESSURE: //29
 
                     var msg6 = (Msg_scaled_pressure)e.Message;
-                    //_droneParams.timeBootMsScaledPress = msg6.time_boot_ms;
-                    //_droneParams.pressAbs = msg6.press_abs;
-                    //_droneParams.pressDiff = msg6.press_diff;
-                    //_droneParams.temperature = msg6.temperature;
 
-                    //MyDebug.WriteLine("29 => " + Convert.ToString(_droneParams.timeBootMsScaledPress) + " "
-                    //                + Convert.ToString(_droneParams.pressAbs) + " "
-                    //                + Convert.ToString(_droneParams.pressDiff) + " "
-                    //                + Convert.ToString(_droneParams.temperature));
                     break;
 
                 case (byte)MAVLINK_MSG_ID.ATTITUDE://30
@@ -437,20 +370,7 @@ namespace MavLink
                     status.pitch = msg7.pitch;
                     status.roll = msg7.roll;
                     status.yaw = msg7.yaw;
-                    //_droneParams.roll = msg7.roll;
-                    //_droneParams.pitch = msg7.pitch;
-                    //_droneParams.yaw = msg7.yaw;
-                    //_droneParams.rollspeed = msg7.rollspeed;
-                    //_droneParams.pitchspeed = msg7.pitchspeed;
-                    //_droneParams.yawspeed = msg7.yawspeed;
 
-                    //MyDebug.WriteLine(Convert.ToString(_droneParams.timeBootMsAtt) + " "
-                    //                + Convert.ToString(_droneParams.radPRY[2]) + " "
-                    //                + Convert.ToString(_droneParams.radPRY[1]) + " "
-                    //                + Convert.ToString(_droneParams.radPRY[0]) + " "
-                    //                + Convert.ToString(_droneParams.rollspeed) + " "
-                    //                + Convert.ToString(_droneParams.pitchspeed) + " "
-                    //                + Convert.ToString(_droneParams.yawspeed));
                     break;
                 case (byte)MAVLINK_MSG_ID.GLOBAL_POSITION_INT: //33
 
@@ -461,75 +381,19 @@ namespace MavLink
                     status.latitude = msg8.lat / 10000000f;
                     status.longitude = msg8.lon / 10000000f;
                     status.altitude = (float)msg8.alt / 1000.0f;
-                    //_droneParams.Rlv_Alt = msg8.relative_alt / 1000;
-                    //_droneParams.vx = msg8.vx;
-                    //_droneParams.vy = msg8.vy;
-                    //_droneParams.vz = msg8.vz;
-                    //_droneParams.hdg = msg8.hdg;
 
-                    //MyDebug.WriteLine(Convert.ToString(Status.timeBootMsGlobalPosInt) + " "
-                    //                + Convert.ToString(Status.latGlobalPosInt) + " "
-                    //                + Convert.ToString(Status.lonGlobalPosInt) + " "
-                    //                + Convert.ToString(Status.altGlobalPosInt) + " "
-                    //                + Convert.ToString(Status.relativeAlt) + " "
-                    //                + Convert.ToString(Status.vx) + " "
-                    //                + Convert.ToString(Status.vy) + " "
-                    //                + Convert.ToString(Status.vz) + " "
-                    //                + Convert.ToString(Status.hdg));
                     break;
 
                 case (byte)MAVLINK_MSG_ID.RC_CHANNELS_RAW://35
 
                     var msg9 = (Msg_rc_channels_raw)e.Message;
-                    //_droneParams.timeBootMsRCChannelRaw = msg9.time_boot_ms;
-                    //_droneParams.port = msg9.port;
-                    //_droneParams.chan1Raw = msg9.chan1_raw;
-                    //_droneParams.chan2Raw = msg9.chan2_raw;
-                    //_droneParams.chan3Raw = msg9.chan3_raw;
-                    //_droneParams.chan4Raw = msg9.chan4_raw;
-                    //_droneParams.chan5Raw = msg9.chan5_raw;
-                    //_droneParams.chan6Raw = msg9.chan6_raw;
-                    //_droneParams.chan7Raw = msg9.chan7_raw;
-                    //_droneParams.chan8Raw = msg9.chan8_raw;
-                    //_droneParams.rssi = msg9.rssi;
 
-                    //MyDebug.WriteLine(Convert.ToString(Status.timeBootMsRCChannelRaw) + " "
-                    //                + Convert.ToString(Status.port) + " "
-                    //                + Convert.ToString(Status.chan1Raw) + " "
-                    //                + Convert.ToString(Status.chan2Raw) + " "
-                    //                + Convert.ToString(Status.chan3Raw) + " "
-                    //                + Convert.ToString(Status.chan4Raw) + " "
-                    //                + Convert.ToString(Status.chan5Raw) + " "
-                    //                + Convert.ToString(Status.chan6Raw) + " "
-                    //                + Convert.ToString(Status.chan7Raw) + " "
-                    //                + Convert.ToString(Status.chan8Raw) + " "
-                    //                + Convert.ToString(Status.rssi));
                     break;
 
                 case (byte)MAVLINK_MSG_ID.SERVO_OUTPUT_RAW://36
 
                     var msg10 = (Msg_servo_output_raw)e.Message;
-                    //_droneParams.timeUsecServoOutRaw = msg10.time_usec;
-                    //_droneParams.portServoOutRaw = msg10.port;
-                    //_droneParams.servo1Raw = msg10.servo1_raw;
-                    //_droneParams.servo2Raw = msg10.servo2_raw;
-                    //_droneParams.servo3Raw = msg10.servo3_raw;
-                    //_droneParams.servo4Raw = msg10.servo4_raw;
-                    //_droneParams.servo5Raw = msg10.servo5_raw;
-                    //_droneParams.servo6Raw = msg10.servo6_raw;
-                    //_droneParams.servo7Raw = msg10.servo7_raw;
-                    //_droneParams.servo8Raw = msg10.servo8_raw;
 
-                    //MyDebug.WriteLine(Convert.ToString(Status.timeUsecServoOutRaw) + " "
-                    //                + Convert.ToString(Status.portServoOutRaw) + " "
-                    //                + Convert.ToString(Status.servo1Raw) + " "
-                    //                + Convert.ToString(Status.servo2Raw) + " "
-                    //                + Convert.ToString(Status.servo3Raw) + " "
-                    //                + Convert.ToString(Status.servo4Raw) + " "
-                    //                + Convert.ToString(Status.servo5Raw) + " "
-                    //                + Convert.ToString(Status.servo6Raw) + " "
-                    //                + Convert.ToString(Status.servo7Raw) + " "
-                    //                + Convert.ToString(Status.servo8Raw));
                     break;
 
                 //Parsing Waypoints Downloaded
@@ -546,24 +410,6 @@ namespace MavLink
                     MyDebug.WriteLine($"received {msg11.command}");
                     AckLock.Set();
 
-                    //_droneParams.MISSION_ITEM_seq = msg11.seq;
-                    //_droneParams.MISSION_ITEM_frame = msg11.frame;
-                    //_droneParams.MISSION_ITEM_command = msg11.command;
-                    //_droneParams.MISSION_ITEM_current = msg11.current;
-                    //_droneParams.MISSION_ITEM_autocontinue = msg11.autocontinue;
-                    //_droneParams.MISSION_ITEM_param1 = msg11.param1;
-                    //_droneParams.MISSION_ITEM_param2 = msg11.param2;
-                    //_droneParams.MISSION_ITEM_param3 = msg11.param3;
-                    //_droneParams.MISSION_ITEM_param4 = msg11.param4;
-                    //_droneParams.MISSION_ITEM_x = msg11.x;
-                    //_droneParams.MISSION_ITEM_y = msg11.y;
-                    //_droneParams.MISSION_ITEM_z = msg11.z;
-                    //_droneParams.newMissionRequestAns = true;
-
-                    //MyDebug.WriteLine(_droneParams.MISSION_ITEM_x.ToString() + " "
-                    //                + _droneParams.MISSION_ITEM_y.ToString() + " "
-                    //                + _droneParams.MISSION_ITEM_z.ToString() + " "
-                    //                + _droneParams.MISSION_ITEM_frame.ToString());
                     break;
 
                 case (byte)MAVLINK_MSG_ID.MISSION_CURRENT://42
@@ -584,8 +430,6 @@ namespace MavLink
                     {
                         status.waypoints = new ObservableCollection<WaypointClass>();
                     }
-                    //_droneParams.MISSION_COUNT_count = msg13.count;
-                    //_droneParams.newMissionRequestListAns = true;
 
                     AckLock.Set();
 
@@ -608,213 +452,27 @@ namespace MavLink
                 case (byte)MAVLINK_MSG_ID.NAV_CONTROLLER_OUTPUT://62
 
                     var msg15 = (Msg_nav_controller_output)e.Message;
-                    //_droneParams.navRoll = msg15.nav_roll;
-                    //_droneParams.navPitch = msg15.nav_pitch;
-                    //_droneParams.navBearing = msg15.nav_bearing;
-                    //_droneParams.targetBearing = msg15.target_bearing;
-                    //_droneParams.wpDist = msg15.wp_dist;
-                    //_droneParams.altError = msg15.alt_error;
-                    //_droneParams.aspdError = msg15.aspd_error;
-                    //_droneParams.xtrackError = msg15.xtrack_error;
-
-                    //MyDebug.WriteLine(Convert.ToString(Status.navRoll) + " "
-                    //                + Convert.ToString(Status.navPitch) + " "
-                    //                + Convert.ToString(Status.navBearing) + " "
-                    //                + Convert.ToString(Status.targetBearing) + " "
-                    //                + Convert.ToString(Status.wpDist) + " "
-                    //                + Convert.ToString(Status.altError) + " "
-                    //                + Convert.ToString(Status.aspdError) + " "
-                    //                + Convert.ToString(Status.xtrackError));
                     break;
 
                 case (byte)MAVLINK_MSG_ID.VFR_HUD://74
 
                     var msg16 = (Msg_vfr_hud)e.Message;
-                    //_droneParams.airspeed = msg16.airspeed;
-                    //_droneParams.groundspeed = msg16.groundspeed;
-                    //_droneParams.heading = msg16.heading;
-                    //_droneParams.throttle = msg16.throttle;
-                    //_droneParams.altVFRHUD = msg16.alt;
-                    //_droneParams.climb = msg16.climb;
-
-                    //MyDebug.WriteLine(Convert.ToString(Status.airspeed) + " "
-                    //                + Convert.ToString(Status.groundspeed) + " "
-                    //                + Convert.ToString(Status.heading) + " "
-                    //                + Convert.ToString(Status.throttle) + " "
-                    //                + Convert.ToString(Status.altVFRHUD) + " "
-                    //                + Convert.ToString(Status.climb));
                     break;
 
                 case (byte)MAVLINK_MSG_ID.COMMAND_ACK://77
 
                     var msg17 = (Msg_command_ack)e.Message;
-                    //_droneParams.command = msg17.command;
-                    //_droneParams.result = msg17.result;
-                    //_droneParams.newCommandAck = true;
-
-                    //MyDebug.WriteLine("COMMAND_ACK => " + Convert.ToString(_droneParams.command) + " " + Convert.ToString(_droneParams.result));
-
                     break;
 
                 case (byte)MAVLINK_MSG_ID.SCALED_IMU2://116
 
                     var msg18 = (Msg_scaled_imu2)e.Message;
-                    //_droneParams.timeBootMsScaledIMU2 = msg18.time_boot_ms;
-                    //_droneParams.xaccScaledIMU2 = msg18.xacc;
-                    //_droneParams.yaccScaledIMU2 = msg18.yacc;
-                    //_droneParams.zaccScaledIMU2 = msg18.zacc;
-                    //_droneParams.xgyroScaledIMU2 = msg18.xgyro;
-                    //_droneParams.ygyroScaledIMU2 = msg18.ygyro;
-                    //_droneParams.zgyroScaledIMU2 = msg18.zgyro;
-                    //_droneParams.xmagScaledIMU2 = msg18.xmag;
-                    //_droneParams.ymagScaledIMU2 = msg18.ymag;
-                    //_droneParams.zmagScaledIMU2 = msg18.zmag;
-
-                    //MyDebug.WriteLine("116 => " + Convert.ToString(_droneParams.timeBootMsScaledIMU2) + " "
-                    //                + Convert.ToString(_droneParams.xaccScaledIMU2) + " "
-                    //                + Convert.ToString(_droneParams.yaccScaledIMU2) + " "
-                    //                + Convert.ToString(_droneParams.zaccScaledIMU2) + " "
-                    //                + Convert.ToString(_droneParams.xgyroScaledIMU2) + " "
-                    //                + Convert.ToString(_droneParams.ygyroScaledIMU2) + " "
-                    //                + Convert.ToString(_droneParams.zgyroScaledIMU2) + " "
-                    //                + Convert.ToString(_droneParams.xmagScaledIMU2) + " "
-                    //                + Convert.ToString(_droneParams.ymagScaledIMU2) + " "
-                    //                + Convert.ToString(_droneParams.zmagScaledIMU2));
                     break;
 
                 case (byte)MAVLINK_MSG_ID.POWER_STATUS: //125
 
                     var msg19 = (Msg_power_status)e.Message;
-                    //_droneParams.Vcc = msg19.Vcc;
-                    //_droneParams.Vservo = msg19.Vservo;
-                    //_droneParams.flags = msg19.flags;
-
-                    //MyDebug.WriteLine(Convert.ToString(Status.Vcc) + " "
-                    //                + Convert.ToString(Status.Vservo) + " "
-                    //                + Convert.ToString(Status.flags));
                     break;
-
-                //case (byte)MAVLINK_MSG_ID.MEMINFO://152
-
-                //    var msg20 = (Msg_meminfo)e.Message;
-                //    _droneParams.brkval = msg20.brkval;
-                //    _droneParams.freemem = msg20.freemem;
-
-                //    //MyDebug.WriteLine(Convert.ToString(Status.brkval) + " "
-                //    //                + Convert.ToString(Status.freemem));
-                //    break;
-
-                //case (byte)MAVLINK_MSG_ID.MOUNT_STATUS://158
-
-                //    var msg21 = (Msg_mount_status)e.Message;
-                //    _droneParams.targetSystemMountStat = msg21.target_system;
-                //    _droneParams.targetComponentMountStat = msg21.target_component;
-                //    _droneParams.pointingA = msg21.pointing_a;
-                //    _droneParams.pointingB = msg21.pointing_b;
-                //    _droneParams.pointingC = msg21.pointing_c;
-
-                //    //MyDebug.WriteLine(Convert.ToString(Status.targetSystem) + " "
-                //    //                + Convert.ToString(Status.targetComponent) + " "
-                //    //                + Convert.ToString(Status.pointingA) + " "
-                //    //                + Convert.ToString(Status.pointingB) + " "
-                //    //                + Convert.ToString(Status.pointingC));
-                //    break;
-
-                //case (byte)MAVLINK_MSG_ID.AHRS://163
-
-                //    var msg22 = (Msg_ahrs)e.Message;
-                //    _droneParams.omegaIx = msg22.omegaIx;
-                //    _droneParams.omegaIy = msg22.omegaIy;
-                //    _droneParams.omegaIz = msg22.omegaIz;
-                //    _droneParams.accelWeight = msg22.accel_weight;
-                //    _droneParams.renormVal = msg22.renorm_val;
-                //    _droneParams.errorRp = msg22.error_rp;
-                //    _droneParams.errorYaw = msg22.error_yaw;
-
-                //    //MyDebug.WriteLine(Convert.ToString(Status.omegaIx) + " "
-                //    //                + Convert.ToString(Status.omegaIy) + " "
-                //    //                + Convert.ToString(Status.omegaIz) + " "
-                //    //                + Convert.ToString(Status.accelWeight) + " "
-                //    //                + Convert.ToString(Status.renormVal) + " "
-                //    //                + Convert.ToString(Status.errorRp) + " "
-                //    //                + Convert.ToString(Status.errorYaw));
-                //    break;
-
-                //case (byte)MAVLINK_MSG_ID.HWSTATUS://165
-
-                //    var msg23 = (Msg_hwstatus)e.Message;
-                //    _droneParams.VccHwStat = msg23.Vcc;
-                //    _droneParams.I2Cerr = msg23.I2Cerr;
-
-                //    //MyDebug.WriteLine(Convert.ToString(Status.VccHwStat) + " "
-                //    //                + Convert.ToString(Status.I2Cerr));
-                //    break;
-
-                //case (byte)MAVLINK_MSG_ID.RANGEFINDER://173
-
-                //    var msg24 = (Msg_rangefinder)e.Message;
-                //    _droneParams.rangeFinderDistance = msg24.distance;
-                //    _droneParams.rangeFinderVoltage = msg24.voltage;
-
-                //    //MyDebug.WriteLine(Convert.ToString(Status.rangeFinderDistance) + " "
-                //    //                + Convert.ToString(Status.rangeFinderVoltage));
-                //    break;
-
-                //case (byte)MAVLINK_MSG_ID.AHRS2://178
-
-                //    var msg25 = (Msg_ahrs2)e.Message;
-                //    _droneParams.rollAHRS2 = msg25.roll;
-                //    _droneParams.pitchAHRS2 = msg25.pitch;
-                //    _droneParams.yawAHRS2 = msg25.yaw;
-                //    _droneParams.altitude = msg25.altitude;
-                //    _droneParams.latAHRS2 = msg25.lat;
-                //    _droneParams.lng = msg25.lng;
-
-                //    //MyDebug.WriteLine(Convert.ToString(Status.rollAHRS2) + " "
-                //    //                + Convert.ToString(Status.pitchAHRS2) + " "
-                //    //                + Convert.ToString(Status.yawAHRS2) + " "
-                //    //                + Convert.ToString(Status.altitude) + " "
-                //    //                + Convert.ToString(Status.latAHRS2) + " "
-                //    //                + Convert.ToString(Status.lng));
-                //    break;
-
-                //case (byte)MAVLINK_MSG_ID.EKF_STATUS_REPORT://193
-
-                //    var msg26 = (Msg_ekf_status_report)e.Message;
-                //    _droneParams.flagsEKF = msg26.flags;
-                //    _droneParams.velocityVariance = msg26.velocity_variance;
-                //    _droneParams.posHorizVariance = msg26.pos_horiz_variance;
-                //    _droneParams.posVertVariance = msg26.pos_vert_variance;
-                //    _droneParams.compassVariance = msg26.compass_variance;
-                //    _droneParams.terrainAltVariance = msg26.terrain_alt_variance;
-
-                //    //MyDebug.WriteLine(Convert.ToString(Status.flagsEKF) + " "
-                //    //                + Convert.ToString(Status.velocityVariance) + " "
-                //    //                + Convert.ToString(Status.posHorizVariance) + " "
-                //    //                + Convert.ToString(Status.posVertVariance) + " "
-                //    //                + Convert.ToString(Status.compassVariance) + " "
-                //    //                + Convert.ToString(Status.terrainAltVariance));
-                //    break;
-
-                //case (byte)MAVLINK_MSG_ID.VIBRATION://241
-
-                //    var msg27 = (Msg_vibration)e.Message;
-                //    _droneParams.timeUsecVibration = msg27.time_usec;
-                //    _droneParams.vibrationX = msg27.vibration_x;
-                //    _droneParams.vibrationY = msg27.vibration_y;
-                //    _droneParams.vibrationZ = msg27.vibration_z;
-                //    _droneParams.clipping0 = msg27.clipping_0;
-                //    _droneParams.clipping1 = msg27.clipping_1;
-                //    _droneParams.clipping2 = msg27.clipping_2;
-
-                //    //MyDebug.WriteLine(Convert.ToString(_droneParams.timeUsecVibration) + " "
-                //    //                + Convert.ToString(_droneParams.vibrationX) + " "
-                //    //                + Convert.ToString(_droneParams.vibrationY) + " "
-                //    //                + Convert.ToString(_droneParams.vibrationZ) + " "
-                //    //                + Convert.ToString(_droneParams.clipping0) + " "
-                //    //                + Convert.ToString(_droneParams.clipping1) + " "
-                //    //                + Convert.ToString(_droneParams.clipping2));
-                //    break;
 
                 case (byte)MAVLINK_MSG_ID.STATUSTEXT://253
 
@@ -823,8 +481,6 @@ namespace MavLink
                     byte severity = msg28.severity;
                     Array.Clear(text, 0, 50);
                     Buffer.BlockCopy(msg28.text, 0, text, 0, msg28.text.Length);
-
-                    //bool bugCheck = String.Compare(System.Text.Encoding.ASCII.GetString(text, 0, Array.IndexOf<byte>(text, 0, 0, 50)), "ERR: wp index out of bounds", true) == 1;
 
                     MyDebug.WriteLine(Convert.ToString(severity) + " " + System.Text.Encoding.ASCII.GetString(text, 0, Array.IndexOf<byte>(text, 0, 0, 50)));
 
@@ -848,6 +504,7 @@ namespace MavLink
                     AckLock.Set();
                     break;
             }
+                    
         }
 
         private void ProcessPacketBytes(byte[] packetBytes, byte rxPacketSequence, ref DroneStatus status, ref AutoResetEvent AckLock)

@@ -9,6 +9,11 @@ using System.Collections.Specialized;
 using System.Windows.Controls.Primitives;
 using System.Threading;
 using MapModule.Services;
+using System.Windows;
+using System.ComponentModel;
+using Prism.Events;
+using EventAggregation.Infrastructure;
+using MinecraftModule.Services;
 
 namespace MapModule.ViewModels
 {
@@ -16,26 +21,30 @@ namespace MapModule.ViewModels
     {
         private readonly IMapModel _model;
         private readonly IMapView _view;
+        private readonly IEventAggregator _eventAggregator;
+
+        private int _selectedDrone = 0;
+
         private ObservableCollection<CustomMapMarker> _mapMarkers;
         public ObservableCollection<WaypointGridItem> waypointGridItems { get; }
         
-        public MapViewModel(IMapView view, IMapModel model)
+        public MapViewModel(IMapView view, IMapModel model, IEventAggregator eventAggregator)
         {
             _view = view;
             _model = model;
+            _eventAggregator = eventAggregator;
 
             _mapMarkers = new ObservableCollection<CustomMapMarker>();
-            //_mapMarkers = _model.GetMarkers();
-
             waypointGridItems = new ObservableCollection<WaypointGridItem>();
+
+            SubscriptionToken subscriptionToken = this._eventAggregator.GetEvent<VehicleStatusUpdatedEvent>().Subscribe(EventTick);
 
             _view.SetModel(this);
 
             MapMarkers.CollectionChanged += MapMarkers_CollectionChanged;
-            //Thread.Sleep(1000);
 
             MapMarkers.Add(new CustomMapMarker(CustomMapMarker.TagType.Drone, new PointLatLng(1.3113, 103.72947), "drone", 0) { });
-            waypointGridItems.Add(new WaypointGridItem() { Index = 32, Lat = 1.3123});
+            waypointGridItems.CollectionChanged += WaypointGridItems_CollectionChanged;
         }
 
         /// <summary>
@@ -44,6 +53,46 @@ namespace MapModule.ViewModels
         private void MapMarkers_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             _view.UpdateMapMarkers(MapMarkers);
+        }
+
+        private void WaypointGridItems_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (_selectedDrone > -1)
+            {
+                if (GetWaypointMarkerCount() > waypointGridItems.Count)
+                {   // If marker count and griditem count are out of sync
+                    RemoveWaypointMarkers();
+
+                    int newIndex = 0;
+
+                    foreach (WaypointGridItem wgi in waypointGridItems)
+                    {
+                        wgi.Index = newIndex++;
+                    }
+                }
+
+                foreach (WaypointGridItem wgi in waypointGridItems)
+                {
+                    MapMarkers.Add(new CustomMapMarker(CustomMapMarker.TagType.Waypoint, new PointLatLng(wgi.Lat, wgi.Lng), _selectedDrone.ToString(), wgi.Index) { Offset = new Point(-50,-50), });
+                }
+            }
+            else
+            {
+                // Should not come here since WaypointGridItems cannot be added if there is no drone selected
+                ClearWaypoints();
+            }
+            _view.UpdateMapMarkers(MapMarkers);
+        }
+
+        private void WaypointGridItem_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            RemoveWaypointMarkers();
+            WaypointGridItems_CollectionChanged(sender, null);
+        }
+
+        private void EventTick(object payload)
+        {
+            MyDebug.WriteLine("MapModule vehicle status updated");
         }
 
         public ObservableCollection<CustomMapMarker> MapMarkers
@@ -57,6 +106,8 @@ namespace MapModule.ViewModels
                 SetProperty(ref _mapMarkers, value);
             }
         }
+
+        #region DelegateCommand
 
         private DelegateCommand _mapMouseDoubleLeftClickCommand;
         public DelegateCommand MapMouseDoubleLeftClickCommand
@@ -76,6 +127,44 @@ namespace MapModule.ViewModels
             }
         }
 
+        private DelegateCommand _startWaypointMissionCommand;
+        public DelegateCommand StartWaypointMissionCommand
+        {
+            get
+            {
+                return _startWaypointMissionCommand = new DelegateCommand(StartWaypointMission);
+            }
+        }
+
+        private DelegateCommand _stopWaypointMissionCommand;
+        public DelegateCommand StopWaypointMissionCommand
+        {
+            get
+            {
+                return _stopWaypointMissionCommand = new DelegateCommand(StopWaypointMission);
+            }
+        }
+
+        private DelegateCommand _downloadMissionCommand;
+        public DelegateCommand DownloadMisisonCommand
+        {
+            get
+            {
+                return _downloadMissionCommand = new DelegateCommand(DownloadMission);
+            }
+        }
+
+        private DelegateCommand _uploadMissionCommand;
+        public DelegateCommand UploadMissionCommand
+        {
+            get
+            {
+                return _uploadMissionCommand = new DelegateCommand(UploadMission);
+            }
+        }
+
+        #endregion DelegateCommand
+
         public IMapView View
         {
             get
@@ -92,7 +181,9 @@ namespace MapModule.ViewModels
 
         private void MapMouseDoubleLeftClick()
         {
-            MapMarkers.Add(new CustomMapMarker(CustomMapMarker.TagType.Waypoint, new PointLatLng(CurrentMouseLatitude, CurrentMouseLongitude), "waypoint", 0) { Offset = new System.Windows.Point(-50, -50) });
+            WaypointGridItem wgi = new WaypointGridItem() { Index = waypointGridItems.Count, Lat = CurrentMouseLatitude, Lng = CurrentMouseLongitude };
+            wgi.PropertyChanged += WaypointGridItem_PropertyChanged;
+            waypointGridItems.Add(wgi);
         }
 
         private bool MapMouseDoubleLeftClickCanExecute()
@@ -102,21 +193,59 @@ namespace MapModule.ViewModels
 
         private void ClearWaypoints()
         {
-            
+            waypointGridItems.Clear();
+
+            RemoveWaypointMarkers();
+        }
+
+        private void RemoveWaypointMarkers()
+        {
             ObservableCollection<CustomMapMarker> newCollection = new ObservableCollection<CustomMapMarker>();
             foreach (CustomMapMarker cmm in MapMarkers)
             {
-               if ((CustomMapMarker.TagType)cmm.Tag != CustomMapMarker.TagType.Waypoint)
+                if ((CustomMapMarker.TagType)cmm.Tag != CustomMapMarker.TagType.Waypoint)
                 {
                     newCollection.Add(cmm);
                 }
             }
             MapMarkers.Clear();
-            
+
             foreach (CustomMapMarker cmm in newCollection)
             {
                 MapMarkers.Add(cmm);
             }
+        }
+
+        private int GetWaypointMarkerCount()
+        {
+            int count = 0;
+            foreach (CustomMapMarker cmm in MapMarkers)
+            {
+                if ((CustomMapMarker.TagType)cmm.Tag == CustomMapMarker.TagType.Waypoint)
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        private void StopWaypointMission()
+        {
+        }
+
+        private void StartWaypointMission()
+        {
+
+        }
+
+        private void UploadMission()
+        {
+
+        }
+
+        private void DownloadMission()
+        {
+
         }
 
         private double _currentMouseLatitude;

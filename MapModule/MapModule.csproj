@@ -136,6 +136,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EventAggregation.Infrastructure\EventAggregation.Infrastructure.csproj">
+      <Project>{7CD3AB86-EC26-4FCB-A797-3358BD444546}</Project>
+      <Name>EventAggregation.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MinecraftModule\MinecraftModule.csproj">
       <Project>{2BA248F4-9D47-456C-B7DE-37C6B44B4449}</Project>
       <Name>MinecraftModule</Name>

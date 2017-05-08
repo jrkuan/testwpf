@@ -25,6 +25,7 @@ namespace MapModule.Views
             MainMap.MapProvider = GMap.NET.MapProviders.BingHybridMapProvider.Instance;
             MainMap.Manager.Mode = AccessMode.ServerAndCache;            
             MainMap.DragButton = MouseButton.Left;
+            MainMap.IgnoreMarkerOnMouseWheel = true;
 
             // Set intitial view
             MainMap.Position = new PointLatLng(1.352, 103.811);

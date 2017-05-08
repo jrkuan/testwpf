@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using Prism.Mvvm;
+using System.Windows.Controls;
 
 namespace MapModule.Views
 {

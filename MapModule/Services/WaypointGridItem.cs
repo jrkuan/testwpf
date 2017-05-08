@@ -23,6 +23,7 @@ namespace MapModule.Services
                 if (index != 0)
                 {
                     SetProperty(ref index, value);
+                    //index = value;
                 }
                 else
                 {
