@@ -590,7 +590,7 @@ namespace MinecraftModule.Services
                 }
             }
 
-            return true;
+            //return true;
         }
 
         public override bool FlyToHere(double lat, double lng, float alt)

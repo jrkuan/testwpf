@@ -8,6 +8,60 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
+        <ToolBarTray Width="auto" Height="auto" Margin="5" x:Name="UnitControlTBT" Opacity="0.75" Background="Transparent" Orientation="Vertical" HorizontalAlignment="Left" Panel.ZIndex="1" Focusable="False">
+            <ToolBar ToolBar.OverflowMode="Never" ToolBarTray.IsLocked="True" IsOverflowOpen="False" Band="1" Margin="1">
+                <ToolBar.Header>
+                    <Label Content="Action" FontSize="12" FontWeight="Bold" Padding="0" Margin="0,2,0,0"/>
+                </ToolBar.Header>
+                <ToolBar.Effect>
+                    <DropShadowEffect ShadowDepth="2"/>
+                </ToolBar.Effect>
+                <Button x:Name="ArmMotorsBtn" ToolTip="Arm" Style="{StaticResource ToolBarButtonStyle}" Command="{Binding ArmCommand}">
+                    <Button.Background>
+                        <ImageBrush ImageSource="../Views/Resources/Lightning.png"/>
+                    </Button.Background>
+                </Button>
+                <Button x:Name="DisarmMotorsBtn" ToolTip="Disarm"  Style="{StaticResource ToolBarButtonStyle}" Command="{Binding DisarmCommand}">
+                    <Button.Background>
+                        <ImageBrush ImageSource="../Views/Resources/Disarm.png"/>
+                    </Button.Background>
+                </Button>
+
+            </ToolBar>
+            <ToolBar ToolBarTray.IsLocked="True" x:Name="MovementControlToolbar" Band="2" Visibility="Visible" Margin="1">
+                <ToolBar.Header>
+                    <Label Content="Move" FontSize="12" FontWeight="Bold" Padding="0" Margin="0,2,0,0"/>
+                </ToolBar.Header>
+                <ToolBar.Effect>
+                    <DropShadowEffect ShadowDepth="2"/>
+                </ToolBar.Effect>
+                <ToggleButton x:Name="FollowBtn" ToolTip="Follow" Style="{StaticResource ToolBarToggleButtonStyle}" Command="{Binding FollowCommand}" IsChecked="{Binding IsFollowMeActive, Mode=TwoWay}">
+                    <ToggleButton.Background>
+                        <ImageBrush ImageSource="../Views/Resources/FollowMe.png"/>
+                    </ToggleButton.Background>
+                </ToggleButton>
+                <Button x:Name="LaunchDroneBtn" ToolTip="Launch" Style="{StaticResource ToolBarButtonStyle}" Command="{Binding TakeoffCommand}">
+                    <Button.Background>
+                        <ImageBrush ImageSource="../Views/Resources/O2 Launch.png"/>
+                    </Button.Background>
+                </Button>
+                <Button x:Name="LandDroneBtn" ToolTip="Land" Style="{StaticResource ToolBarButtonStyle}" Command="{Binding LandCommand}">
+                    <Button.Background>
+                        <ImageBrush ImageSource="../Views/Resources/O2 Land.png"/>
+                    </Button.Background>
+                </Button>
+                <Button x:Name="HighLaunchDroneBtn" ToolTip="High Launch" Style="{StaticResource ToolBarButtonStyle}" Command="{Binding HighLaunchCommand}">
+                    <Button.Background>
+                        <ImageBrush ImageSource="../Views/Resources/Launch.png"/>
+                    </Button.Background>
+                </Button>
+                <Button x:Name="ChangeAltBtn" ToolTip="Change Altitude" Style="{StaticResource ToolBarButtonStyle}" Command="{Binding ChangeAltitudeCommand}">
+                    <Button.Background>
+                        <ImageBrush ImageSource="../Views/Resources/Up Up.png"/>
+                    </Button.Background>
+                </Button>
+            </ToolBar>
+        </ToolBarTray>
 
         <map:GMapControl x:Name="MainMap" MinZoom="2"
                                          MaxZoom="25"
@@ -28,9 +82,9 @@
             </map:GMapControl.InputBindings>
         </map:GMapControl>
         
-        <local:WaypointControl></local:WaypointControl>
+        <local:WaypointControl Panel.ZIndex="2"></local:WaypointControl>
 
-        <StackPanel Grid.Row="0" Grid.Column="0" Background="Transparent" Opacity="0.75" Panel.ZIndex="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,-5">
+        <StackPanel Grid.Row="0" Grid.Column="0" Background="Transparent" Opacity="0.75" Panel.ZIndex="3" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,-5" IsEnabled="False">
             <TextBlock Name="LatitudeLabel" Background="Black" Foreground="White" Opacity="1" Text="{Binding CurrentMouseLatitude, StringFormat=N7}"  HorizontalAlignment="Center" FontSize="14" FontWeight="DemiBold" TextWrapping="Wrap"  VerticalAlignment="Center" Padding="5" Width="100"></TextBlock>
             <TextBlock Name="LongitudeLabel" Background="Black" Foreground="White" Opacity="1" Text="{Binding CurrentMouseLongitude, StringFormat=N7}" HorizontalAlignment="Center" FontSize="14" FontWeight="DemiBold" TextWrapping="Wrap" VerticalAlignment="Center" Padding="5" Width="100"></TextBlock>
         </StackPanel>

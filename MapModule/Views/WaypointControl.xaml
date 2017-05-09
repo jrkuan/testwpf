@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:MapModule.Views"
              xmlns:dvm="clr-namespace:MapModule.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="350" d:DesignWidth="700">
     <Grid>
         <DockPanel>
             <DockPanel.RenderTransform>
@@ -26,27 +26,29 @@
                     <SolidColorBrush Color="black" Opacity="0.5"/>
                 </Expander.Background>
 
-                <DockPanel VerticalAlignment="Top" Height="100" Margin="5" HorizontalAlignment="Stretch" LastChildFill="True">
+                <DockPanel VerticalAlignment="Top" Height="100" Margin="5,5,5,0" HorizontalAlignment="Stretch" LastChildFill="True">
                     <StackPanel DockPanel.Dock="Right" Orientation="Vertical">
-                        <Button Content="Upload Waypoints" Padding="5,0" Command="{Binding UploadMissionCommand}" Height="25" Margin="2"></Button>
-                        <Button Content="Download Waypoints" Padding="5,0" Command="{Binding DownloadMissionCommand}" Height="25" Margin="2"></Button>
-                        <Button Content="Clear Waypoints" Padding="5,0" Command="{Binding ClearWaypointsCommand}" Height="25" Margin="2"></Button>
+                        <Button Opacity="0.8" Content="Upload Waypoints" Padding="5,0" Command="{Binding UploadMissionCommand}" Height="25" Margin="2"></Button>
+                        <Button Opacity="0.8" Content="Download Waypoints" Padding="5,0" Command="{Binding DownloadMissionCommand}" Height="25" Margin="2"></Button>
+                        <Button Opacity="0.8" Content="Clear Waypoints" Padding="5,0" Command="{Binding ClearWaypointsCommand}" Height="25" Margin="2"></Button>
                     </StackPanel>
                     <StackPanel DockPanel.Dock="Right" Orientation="Vertical">
-                        <Button Content="Start Waypoints" Padding="5,0" Command="{Binding StartWaypointMissionCommand}" Height="25" Margin="2"></Button>
-                        <Button Content="Stop Waypoints" Padding="5,0" Command="{Binding StopWaypointMissionCommand}" Height="25" Margin="2"></Button>
-                        <Button Content="Go to Waypoint" Padding="5,0" Command="{Binding SetCurrentWaypointCommand}" Height="25" Margin="2"></Button>
+                        <Button Opacity="0.8" Content="Start Waypoints" Padding="5,0" Command="{Binding StartWaypointMissionCommand}" Height="25" Margin="2"></Button>
+                        <Button Opacity="0.8" Content="Stop Waypoints" Padding="5,0" Command="{Binding StopWaypointMissionCommand}" Height="25" Margin="2"></Button>
+                        <Button Opacity="0.8" Content="Go to Waypoint" Padding="5,0" Command="{Binding SetCurrentWaypointCommand}" Height="25" Margin="2"></Button>
                     </StackPanel>
-                    <DataGrid x:Name="wpDataGrid" ItemsSource="{Binding waypointGridItems}" CanUserReorderColumns="False" CanUserResizeColumns="False" IsManipulationEnabled="True" CanUserAddRows="False" CanUserDeleteRows="True" Height="auto" HorizontalAlignment="Stretch" AutoGenerateColumns="False" MinWidth="300" VerticalAlignment="Top" IsSynchronizedWithCurrentItem="True">
+                    
+                    <DataGrid Opacity="0.8" x:Name="wpDataGrid" ItemsSource="{Binding waypointGridItems}" BorderBrush="Transparent" BorderThickness="0" CanUserReorderColumns="False" CanUserResizeColumns="False" IsManipulationEnabled="True" CanUserAddRows="False" CanUserDeleteRows="True" Height="auto" HorizontalAlignment="Stretch" AutoGenerateColumns="False" MinWidth="300" MinHeight="100" VerticalAlignment="Top" IsSynchronizedWithCurrentItem="True">
                         <DataGrid.Background>
-                            <SolidColorBrush Color="black" Opacity="0.5"/>
+                            <SolidColorBrush Color="black" Opacity="0.1"/>
                         </DataGrid.Background>
                         <DataGrid.Columns>
                             <DataGridTextColumn x:Name="wpDataGrid_WpNumber" Header="No." CanUserSort="False" Binding="{Binding Path=Index, Mode=TwoWay}" IsReadOnly="True" Width="30"></DataGridTextColumn>
-                            <DataGridTextColumn x:Name="wpDataGrid_WpLat" Header="Lat." CanUserSort="False" Binding="{Binding Path=Lat, Mode=TwoWay}" IsReadOnly="False" Width="150" Foreground="#FFC10B0B"></DataGridTextColumn>
-                            <DataGridTextColumn x:Name="wpDataGrid_WpLng" Header="Lng." CanUserSort="False" Binding="{Binding Path=Lng, Mode=TwoWay}" IsReadOnly="False" Width="150" Foreground="#FFC10B0B"></DataGridTextColumn>
-                            <DataGridTextColumn x:Name="wpDataGrid_WpAlt" Header="Alt." CanUserSort="False" Binding="{Binding Path=Alt, Mode=TwoWay}" IsReadOnly="False" MinWidth="30"></DataGridTextColumn>
-                            <DataGridTextColumn x:Name="wpDataGrid_WpDelay" Header="Delay" CanUserSort="False" Binding="{Binding Path=Delay, Mode=TwoWay}" IsReadOnly="False" MinWidth="30"></DataGridTextColumn>
+                            <DataGridTextColumn x:Name="wpDataGrid_WpLat" Header="Latitude" CanUserSort="False" Binding="{Binding Path=Lat, Mode=TwoWay}" IsReadOnly="False" Width="150" Foreground="#FFC10B0B"></DataGridTextColumn>
+                            <DataGridTextColumn x:Name="wpDataGrid_WpLng" Header="Longitude" CanUserSort="False" Binding="{Binding Path=Lng, Mode=TwoWay}" IsReadOnly="False" Width="150" Foreground="#FFC10B0B"></DataGridTextColumn>
+                            <DataGridTextColumn x:Name="wpDataGrid_WpAlt" Header="Altitude" CanUserSort="False" Binding="{Binding Path=Alt, Mode=TwoWay}" IsReadOnly="False" MinWidth="40"></DataGridTextColumn>
+                            <DataGridTextColumn x:Name="wpDataGrid_WpDelay" Header="Delay" CanUserSort="False" Binding="{Binding Path=Delay, Mode=TwoWay}" IsReadOnly="False" MinWidth="40"></DataGridTextColumn>
+                            <DataGridTextColumn IsReadOnly="True" Width="*" CanUserResize="False" CanUserSort="False" CanUserReorder="False"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                 </DockPanel>

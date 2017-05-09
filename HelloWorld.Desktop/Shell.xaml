@@ -28,7 +28,7 @@
             <RowDefinition Height="1*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <ItemsControl Grid.Column="0"></ItemsControl>
+        <ItemsControl Grid.Column="0" Name="ConsoleRegion" prism:RegionManager.RegionName="ConsoleRegion" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></ItemsControl>
 
         <GridSplitter Grid.Column="1" VerticalAlignment="Stretch"></GridSplitter>
         
