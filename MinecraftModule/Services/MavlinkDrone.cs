@@ -1,5 +1,4 @@
 ﻿using MavLink;
-using MinecraftModule.Services;
 using System;
 using System.ComponentModel;
 using System.IO.Ports;
@@ -7,7 +6,6 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using static MinecraftModule.Services.DroneModel;
 
 namespace MinecraftModule.Services
 {

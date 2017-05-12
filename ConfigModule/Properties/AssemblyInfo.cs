@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("VideoModule")]
+[assembly: AssemblyTitle("ConfigModule")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("VideoModule")]
+[assembly: AssemblyProduct("ConfigModule")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("3d169217-f9d7-480f-9e7d-32010a1a8d2d")]
+[assembly: Guid("2444c001-9bd8-45a8-b8ae-8bc665b2da4c")]
 
 // Version information for an assembly consists of the following four values:
 //

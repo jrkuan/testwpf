@@ -5,6 +5,8 @@ using Prism.Mvvm;
 using MinecraftModule;
 using Prism.Events;
 using Microsoft.Practices.Unity;
+using ConsoleModule;
+using ConfigModule;
 
 namespace HelloWorld.Desktop
 {
@@ -44,6 +46,8 @@ namespace HelloWorld.Desktop
             moduleCatalog.AddModule(typeof(StatusModule.StatusModel));
             moduleCatalog.AddModule(typeof(MapModule.MapModule));
             moduleCatalog.AddModule(typeof(MinecraftModule.MinecraftModule));
+            moduleCatalog.AddModule(typeof(ConsoleModule.ConsoleModule));
+            moduleCatalog.AddModule(typeof(ConfigModule.ConfigModule));
         }
 
     }

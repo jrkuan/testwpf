@@ -1,6 +1,7 @@
 ﻿using GMap.NET.WindowsPresentation;
 using GMap.NET;
 using MultiDroneGCS1.Display.CustomControl;
+using Prism.Commands;
 
 namespace MapModule.Views
 {
@@ -50,6 +51,18 @@ namespace MapModule.Views
             }                    
         }
 
+        private DelegateCommand _mouseClickCommand;
+        public DelegateCommand MouseClickCommand
+        {
+            get
+            {
+                return _mouseClickCommand = new DelegateCommand(MouseClick);
+            }
+        }
+
+        private void MouseClick()
+        {
+        }
         #endregion Constructors
     }
 }

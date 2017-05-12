@@ -6,7 +6,30 @@
              xmlns:local="clr-namespace:ConsoleModule.Views"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-            
+    <Grid Background="Transparent">
+        <TabControl TabStripPlacement="Left">
+            <TabControl.Resources>
+                <Style TargetType="{x:Type TabItem}">
+                    <Setter Property="HeaderTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <ContentPresenter Content="{TemplateBinding Content}">
+                                    <ContentPresenter.LayoutTransform>
+                                        <RotateTransform Angle="270" />
+                                    </ContentPresenter.LayoutTransform>
+                                </ContentPresenter>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Padding" Value="3" />
+                </Style>
+            </TabControl.Resources>
+            <TabItem Header="Parameter" Background="Transparent" FontWeight="Bold" FontSize="16">
+                <Grid></Grid>
+            </TabItem>
+            <TabItem Header="Configuration" Background="Transparent" FontWeight="Bold" FontSize="16">
+                <Grid></Grid>
+            </TabItem>
+        </TabControl>  
     </Grid>
 </UserControl>

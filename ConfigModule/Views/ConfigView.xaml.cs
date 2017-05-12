@@ -1,4 +1,4 @@
-﻿using ConsoleModule.Interfaces;
+﻿using ConfigModule.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,19 +14,19 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ConsoleModule.Views
+namespace ConfigModule.Views
 {
     /// <summary>
-    /// Interaction logic for ConsoleView.xaml
+    /// Interaction logic for ConfigView.xaml
     /// </summary>
-    public partial class ConsoleView : UserControl, IConsoleView
+    public partial class ConfigView : UserControl, IConfigView
     {
-        public ConsoleView()
+        public ConfigView()
         {
             InitializeComponent();
         }
 
-        public void SetModel(IConsoleViewModel model)
+        public void SetModel(IConfigViewModel model)
         {
             DataContext = model;
         }

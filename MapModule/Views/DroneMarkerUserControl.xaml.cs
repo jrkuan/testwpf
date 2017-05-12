@@ -1,4 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using Prism.Commands;
+using Prism.Mvvm;
+using System.Windows.Controls;
 
 namespace MapModule.Views
 {
@@ -14,6 +16,8 @@ namespace MapModule.Views
         #endregion
 
         #region Methods
+
+        
 
         private void Grid_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {

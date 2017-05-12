@@ -1,35 +1,31 @@
 ﻿using EventAggregation.Infrastructure;
+using Microsoft.Practices.Unity;
+using MinecraftModule.Interfaces;
 using MinecraftModule.Services;
 using Prism.Events;
 using Prism.Modularity;
 using Prism.Regions;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace MinecraftModule
 {
     public class MinecraftModule : IModule
     {
-        private readonly IRegionManager regionManager;
-        private readonly IEventAggregator eventAggregator;
+        private readonly IEventAggregator _eventAggregator;
+        private readonly IRegionManager _regionManager;
+        private readonly IUnityContainer _container;
 
         private BackgroundWorker BGW = new BackgroundWorker();
 
         ObservableCollection<Drone> Drones = new ObservableCollection<Drone>();
 
-        public MinecraftModule(IRegionManager regionManager, IEventAggregator eventAggregator)
+        public MinecraftModule(IRegionManager regionManager, IEventAggregator eventAggregator, IUnityContainer container)
         {
-            this.regionManager = regionManager;
-            this.eventAggregator = eventAggregator;
-
-            BGW.DoWork += BGW_DoWork;
-            BGW.RunWorkerAsync();
+            this._regionManager = regionManager;
+            this._eventAggregator = eventAggregator;
+            this._container = container;
 
             MyDebug.WriteLine("MinecraftModule intialized");
         }
@@ -38,26 +34,9 @@ namespace MinecraftModule
         /// Registers a region name with its associated view type in the region view registry
         /// </summary>
         void IModule.Initialize()
-        {            
-            Drones.Add(new MavlinkDrone() { Param1 = "COM10", Param2 = 57600, ConnType = DroneModel.ConnectionType.SERIAL});
-            Drones[0].Connect();
-
-            Drones[0].Arm();
-        }
-
-        private void BGW_DoWork(object sender, DoWorkEventArgs e)
         {
-            VehicleStatus vehStatus = new VehicleStatus();
-            vehStatus.latitude = 111;
-            vehStatus.longitude = 222;
-
-            while (true)
-            {
-                eventAggregator.GetEvent<VehicleStatusUpdatedEvent>().Publish(vehStatus);
-                //MyDebug.WriteLine("tick");
-                Thread.Sleep(1000);
-
-            }
+            _container.RegisterType<IMinecraft, Minecraft>();
         }
+        
     }
 }

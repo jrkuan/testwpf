@@ -14,6 +14,9 @@ using System.ComponentModel;
 using Prism.Events;
 using EventAggregation.Infrastructure;
 using MinecraftModule.Services;
+using Prism.Regions;
+using Microsoft.Practices.Unity;
+using MinecraftModule.Interfaces;
 
 namespace MapModule.ViewModels
 {
@@ -22,17 +25,22 @@ namespace MapModule.ViewModels
         private readonly IMapModel _model;
         private readonly IMapView _view;
         private readonly IEventAggregator _eventAggregator;
+        private readonly IRegionManager _regionManager;
+        private readonly IUnityContainer _container;
+
 
         private int _selectedDrone = 0;
 
         private ObservableCollection<CustomMapMarker> _mapMarkers;
         public ObservableCollection<WaypointGridItem> waypointGridItems { get; }
         
-        public MapViewModel(IMapView view, IMapModel model, IEventAggregator eventAggregator)
+        public MapViewModel(IMapView view, IMapModel model, IEventAggregator eventAggregator, IRegionManager regionManager, IUnityContainer container)
         {
             _view = view;
             _model = model;
             _eventAggregator = eventAggregator;
+            _regionManager = regionManager;
+            _container = container;
 
             _mapMarkers = new ObservableCollection<CustomMapMarker>();
             waypointGridItems = new ObservableCollection<WaypointGridItem>();
@@ -44,6 +52,7 @@ namespace MapModule.ViewModels
             MapMarkers.CollectionChanged += MapMarkers_CollectionChanged;
 
             MapMarkers.Add(new CustomMapMarker(CustomMapMarker.TagType.Drone, new PointLatLng(1.3113, 103.72947), "drone", 0) { });
+            MapMarkers.Add(new CustomMapMarker(CustomMapMarker.TagType.Drone, new PointLatLng(1.3132, 103.73947), "drone", 1) { });
             waypointGridItems.CollectionChanged += WaypointGridItems_CollectionChanged;
         }
 
@@ -57,6 +66,8 @@ namespace MapModule.ViewModels
 
         private void WaypointGridItems_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
+            CustomMapMarker cmm;
+
             if (_selectedDrone > -1)
             {
                 if (GetWaypointMarkerCount() > waypointGridItems.Count)
@@ -73,7 +84,10 @@ namespace MapModule.ViewModels
 
                 foreach (WaypointGridItem wgi in waypointGridItems)
                 {
-                    MapMarkers.Add(new CustomMapMarker(CustomMapMarker.TagType.Waypoint, new PointLatLng(wgi.Lat, wgi.Lng), _selectedDrone.ToString(), wgi.Index) { Offset = new Point(-50,-50), });
+                    cmm = new CustomMapMarker(CustomMapMarker.TagType.Waypoint, new PointLatLng(wgi.Lat, wgi.Lng), _selectedDrone.ToString(), wgi.Index) { Offset = new Point(-50, -50) };
+                    (cmm.Shape as WaypointUserControl).AltitudeLabel.Content = wgi.Alt;
+                    (cmm.Shape as WaypointUserControl).DwellTimeLabel.Content = wgi.Delay;
+                    MapMarkers.Add(cmm);
                 }
             }
             else
@@ -163,6 +177,15 @@ namespace MapModule.ViewModels
             }
         }
 
+        private DelegateCommand _armDroneCommand;
+        public DelegateCommand ArmDroneCommand
+        {
+            get
+            {
+                return _armDroneCommand = new DelegateCommand(ArmDrone);
+            }
+        }
+
         #endregion DelegateCommand
 
         public IMapView View
@@ -248,6 +271,12 @@ namespace MapModule.ViewModels
 
         }
 
+        private void ArmDrone()
+        {
+            IMinecraft minecraft = _container.Resolve<IMinecraft>();
+            minecraft.Arm();
+        }
+
         private double _currentMouseLatitude;
         public double CurrentMouseLatitude
         {
@@ -286,6 +315,7 @@ namespace MapModule.ViewModels
                 SetProperty(ref _expanderIsExpanded, value);
             }
         }
+
 
     }
 }

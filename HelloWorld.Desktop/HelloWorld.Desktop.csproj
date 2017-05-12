@@ -142,6 +142,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ConfigModule\ConfigModule.csproj">
+      <Project>{2444C001-9BD8-45A8-B8AE-8BC665B2DA4C}</Project>
+      <Name>ConfigModule</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ConsoleModule\ConsoleModule.csproj">
+      <Project>{FF794241-8E9F-4F0B-939E-7252EB37C509}</Project>
+      <Name>ConsoleModule</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HelloWorldModule\StatusModule.csproj">
       <Project>{72B15795-5437-4B96-907D-5B83B53029DA}</Project>
       <Name>StatusModule</Name>

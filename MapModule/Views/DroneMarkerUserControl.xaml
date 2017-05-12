@@ -7,7 +7,10 @@
              xmlns:local="clr-namespace:MapModule.Views"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" Width="100" Height="100">
-    <Grid RenderTransformOrigin="0.5,0.5" MouseDown="Grid_MouseDown">
+    <Grid RenderTransformOrigin="0.5,0.5" IsEnabled="True">
+        <Grid.InputBindings>
+            <MouseBinding Gesture="LeftClick" Command="{Binding MouseClickCommand}"></MouseBinding>
+        </Grid.InputBindings>
         <Grid.RenderTransform>
             <TransformGroup>
                 <ScaleTransform/>

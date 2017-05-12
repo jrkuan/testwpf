@@ -16,7 +16,7 @@
                 <ToolBar.Effect>
                     <DropShadowEffect ShadowDepth="2"/>
                 </ToolBar.Effect>
-                <Button x:Name="ArmMotorsBtn" ToolTip="Arm" Style="{StaticResource ToolBarButtonStyle}" Command="{Binding ArmCommand}">
+                <Button x:Name="ArmMotorsBtn" ToolTip="Arm" Style="{StaticResource ToolBarButtonStyle}" Command="{Binding ArmDroneCommand}">
                     <Button.Background>
                         <ImageBrush ImageSource="../Views/Resources/Lightning.png"/>
                     </Button.Background>
