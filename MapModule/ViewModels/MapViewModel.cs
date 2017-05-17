@@ -17,6 +17,7 @@ using MinecraftModule.Services;
 using Prism.Regions;
 using Microsoft.Practices.Unity;
 using MinecraftModule.Interfaces;
+using System.Diagnostics;
 
 namespace MapModule.ViewModels
 {
@@ -28,12 +29,11 @@ namespace MapModule.ViewModels
         private readonly IRegionManager _regionManager;
         private readonly IUnityContainer _container;
 
-
         private int _selectedDrone = 0;
 
         private ObservableCollection<CustomMapMarker> _mapMarkers;
         public ObservableCollection<WaypointGridItem> waypointGridItems { get; }
-        
+
         public MapViewModel(IMapView view, IMapModel model, IEventAggregator eventAggregator, IRegionManager regionManager, IUnityContainer container)
         {
             _view = view;
@@ -186,6 +186,15 @@ namespace MapModule.ViewModels
             }
         }
 
+        private DelegateCommand _disarmDroneCommand;
+        public DelegateCommand DisarmDroneCommand
+        {
+            get
+            {
+                return _disarmDroneCommand = new DelegateCommand(DisarmDrone);
+            }
+        }
+
         #endregion DelegateCommand
 
         public IMapView View
@@ -273,8 +282,17 @@ namespace MapModule.ViewModels
 
         private void ArmDrone()
         {
+            if (_selectedDrone == -1)
+            {
+                return;
+            }
             IMinecraft minecraft = _container.Resolve<IMinecraft>();
             minecraft.Arm();
+        }
+
+        private void DisarmDrone()
+        {
+
         }
 
         private double _currentMouseLatitude;

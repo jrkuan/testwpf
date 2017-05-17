@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace HelloWorld.Desktop
+namespace Minecraft.Desktop
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloWorld.Desktop", "HelloWorld.Desktop\HelloWorld.Desktop.csproj", "{1CEA31A2-5C90-4AC1-B3E5-980D40634E83}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Minecraft GCS", "HelloWorld.Desktop\Minecraft GCS.csproj", "{1CEA31A2-5C90-4AC1-B3E5-980D40634E83}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StatusModule", "HelloWorldModule\StatusModule.csproj", "{72B15795-5437-4B96-907D-5B83B53029DA}"
 EndProject

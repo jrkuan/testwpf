@@ -17,10 +17,6 @@ namespace MinecraftModule
         private readonly IRegionManager _regionManager;
         private readonly IUnityContainer _container;
 
-        private BackgroundWorker BGW = new BackgroundWorker();
-
-        ObservableCollection<Drone> Drones = new ObservableCollection<Drone>();
-
         public MinecraftModule(IRegionManager regionManager, IEventAggregator eventAggregator, IUnityContainer container)
         {
             this._regionManager = regionManager;

@@ -8,7 +8,7 @@ using Microsoft.Practices.Unity;
 using ConsoleModule;
 using ConfigModule;
 
-namespace HelloWorld.Desktop
+namespace Minecraft.Desktop
 {
     class Bootstrapper : UnityBootstrapper
     {

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HelloWorld.Desktop.Properties
+namespace Minecraft.Desktop.Properties
 {
 
 
